@@ -1,0 +1,26 @@
+{
+  "name": "ing_check",
+  "version": "0.0.1",
+  "description": "Ingredients checker to identify animal-derived products",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "^8.9.4",
+    "yarn": "^1.6.0"
+  },
+  "keywords": [
+    "sustainability",
+    "environment",
+    "vegan",
+    "vegetarian",
+    "ingredient"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.88.0"
+  }
+}
