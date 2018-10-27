@@ -64,6 +64,7 @@ function fetchInfo(html) {
 
     let currentNode = $(element).next();
     let category;
+    let linksToOriginal;
     let aliases;
 
     while (true) {
@@ -89,11 +90,37 @@ function fetchInfo(html) {
       }
 
       if (currentNode.is("a")) {
-        if (!aliases) {
-          aliases = [];
+        if (!linksToOriginal) {
+          linksToOriginal = [];
         }
 
-        aliases.push(currentNode.text());
+        linksToOriginal.push(currentNode.text());
+      }
+
+      if (
+        currentNode.is("strong") &&
+        currentNode.text().includes("Also known as")
+      ) {
+        let next = currentNode["0"].next;
+        let rawAliases = "";
+
+        while (!(next.type === "tag" && next.name === "br")) {
+          if (next.type === "text") {
+            rawAliases += next.data;
+          } else if (next.type === "tag") {
+            rawAliases += $(next).text();
+          }
+
+          next = next.next;
+        }
+
+        aliases = rawAliases
+          .trim()
+          .replace(": ", "") // remove colon at the front
+          .replace(/\.+$/, "") // remove full-stop at the end
+          .replace(/\; /g, ", ") // replace ";" delimiter with ","
+          .split(", ")
+          .map(alias => alias.replace(/^or /, ""));
       }
 
       // deciding the next node to traverse
@@ -115,9 +142,9 @@ function fetchInfo(html) {
       infoKeyToInfoDetails[ingName] = {
         category
       };
-    } else if (aliases) {
+    } else if (linksToOriginal) {
       infoKeys = [];
-      aliases.forEach(alias => {
+      linksToOriginal.forEach(alias => {
         infoKeys.push(sanitizeString(alias));
       });
     } else {
@@ -131,6 +158,12 @@ function fetchInfo(html) {
 
     if (infoKeys) {
       ingNameToInfoKeys[ingName] = infoKeys;
+
+      if (aliases) {
+        aliases.forEach(alias => {
+          ingNameToInfoKeys[alias] = infoKeys;
+        });
+      }
     }
   });
 
