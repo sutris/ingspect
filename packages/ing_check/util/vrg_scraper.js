@@ -7,7 +7,7 @@ request(URL, function(error, _response, html) {
   if (!error) {
     const ingDict = fetchInfo(html);
 
-    logIngredients(ingDict);
+    saveAsJSON(ingDict);
   } else {
     console.error(error);
   }
@@ -214,6 +214,35 @@ function logIngredients(ingredientDict) {
       console.log("");
     });
   });
+}
+
+/**
+ * Save ingredient dictionary as JSON files in the scraper script directory
+ *
+ * @param {IngredientDictionary} ingredientDict dictionary of ingredients with their details
+ */
+function saveAsJSON(ingredientDict) {
+  const { ingNameToInfoKeys, infoKeyToInfoDetails } = ingredientDict;
+
+  saveObjectAsJSON(ingNameToInfoKeys, "ingNameToInfoKeys");
+  saveObjectAsJSON(infoKeyToInfoDetails, "infoKeyToInfoDetails");
+
+  function saveObjectAsJSON(object, fileName) {
+    const fs = require("fs");
+    const fileNameWithExtension = `${fileName}.json`;
+
+    fs.writeFile(
+      `${__dirname}/${fileNameWithExtension}`,
+      JSON.stringify(object, null, 4),
+      function(err) {
+        if (err) {
+          return console.error(err);
+        }
+
+        console.log(`${fileNameWithExtension} file is saved`);
+      }
+    );
+  }
 }
 
 /**
