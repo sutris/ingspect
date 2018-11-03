@@ -16,6 +16,7 @@ request(URL, function(error, _response, html) {
 /**
  * @typedef {Object} InfoDetail
  * @property {string} category ingredient category (i.e. vegan, vegetarian, typically vegan, etc.)
+ * @property {string} definition ingredient short description
  */
 
 /**
@@ -66,6 +67,7 @@ function fetchInfo(html) {
     let category;
     let linksToOriginal;
     let aliases;
+    let definition;
 
     while (true) {
       if (currentNode.is(nextH2) || currentNode.length <= 0) {
@@ -123,6 +125,26 @@ function fetchInfo(html) {
           .map(alias => alias.replace(/^or /, ""));
       }
 
+      if (
+        currentNode.is("strong") &&
+        currentNode.text().includes("Definition")
+      ) {
+        let next = currentNode["0"].next;
+        rawDefinition = "";
+
+        while (!(next.type === "tag" && next.name === "br")) {
+          if (next.type === "text") {
+            rawDefinition += next.data;
+          } else if (next.type === "tag") {
+            rawDefinition += $(next).text();
+          }
+
+          next = next.next;
+        }
+
+        definition = rawDefinition.trim().replace(": ", ""); // remove colon at the front
+      }
+
       // deciding the next node to traverse
       if (currentNode.find(nextH2).length > 0) {
         currentNode = currentNode.children().first();
@@ -140,7 +162,8 @@ function fetchInfo(html) {
       infoKeys = [ingName];
 
       infoKeyToInfoDetails[ingName] = {
-        category
+        category,
+        definition
       };
     } else if (linksToOriginal) {
       infoKeys = [];
@@ -185,7 +208,10 @@ function logIngredients(ingredientDict) {
     infoKeys.forEach(infoKey => {
       const infoDetail = infoKeyToInfoDetails[infoKey];
 
-      console.log(`${ingName} (${infoKey}): ${infoDetail.category}`);
+      console.log(`# ${ingName} (${infoKey})`);
+      console.log(`Definition: ${infoDetail.definition}`);
+      console.log(`Category: ${infoDetail.category}`);
+      console.log("");
     });
   });
 }
