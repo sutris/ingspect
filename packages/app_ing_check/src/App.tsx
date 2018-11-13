@@ -1,25 +1,36 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import "normalize.css";
+
 import "./App.css";
 
 class App extends Component {
+  private searchInput: HTMLInputElement | null = null;
+
+  componentDidMount() {
+    if (this.searchInput) {
+      this.searchInput.focus();
+    }
+  }
+
+  handleKeyPress(event: React.KeyboardEvent) {
+    if (event.key === "Enter") {
+      // DO SOMETHING
+    }
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.j</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="app">
+        <div className="logo" />
+        <input
+          ref={el => {
+            this.searchInput = el;
+          }}
+          className="search_input"
+          type="text"
+          placeholder="Put ingredient list here"
+          onKeyPress={this.handleKeyPress}
+        />
       </div>
     );
   }
