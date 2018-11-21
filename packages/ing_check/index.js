@@ -31,12 +31,20 @@ const StringSimilarity = require("string-similarity");
  */
 
 /**
+ * Dictionary of ingredients
+ *
+ * @typedef {Object} CategorizeOption
+ * @property {number} minSimilarity minimum similarity between the ingredient name and the one in ingredient dictionary. If it is below the minSimilarity, categorize ingredient as "unsure".
+ */
+
+/**
  * Categorize ingredients
  *
  * @param {string[]} ingList a list of ingredients to be categorized
  * @param {IngredientDictionary} ingDict
+ * @param {CategorizeOption} option
  */
-function categorize(ingList, ingDict) {
+function categorize(ingList, ingDict, option) {
   const ingNames = Object.keys(ingDict.ingNameToInfoKeys);
   const result = {};
 
@@ -48,7 +56,9 @@ function categorize(ingList, ingDict) {
     const ingInfo = ingDict.infoKeyToInfoDetails[infoKey];
     let { category, definition } = ingInfo;
 
-    if (rating < 1) {
+    let minRating = (option && option.minSimilarity) || 1;
+
+    if (rating < minRating) {
       category = "unsure";
     }
 
@@ -75,7 +85,7 @@ function test() {
     .split(",")
     .map(string => string.trim());
 
-  console.log(categorize(ingList, ingDict));
+  console.log(categorize(ingList, ingDict, { minSimilarity: 0.85 }));
 }
 
 test();
