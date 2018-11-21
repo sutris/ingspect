@@ -78,14 +78,6 @@ function categorize(ingList, ingDict, option) {
   return result;
 }
 
-function test() {
-  const ingDict = require("./data/ingDict");
-
-  const ingList = "Water (aqua), sodium lauroyl methyl isethionate, cocamidopropyl hydroxysultaine, sodium cocoyl isethionate, coco-glucoside, grapefruit (citrus grandis) fruit extract, sodium chloride, sodium benzoate, glyceryl oleate, hydroxypropyl methylcellulose, hydroxyacetophenone, panthenyl hydroxypropyl steardimonium chloride, pro-vitamin B5 (panthenol), aloe vera (aloe barbadensis) leaf juice, lavender (lavandula angustifolia) extract, orange (citrus aurantium dulcis) peel oil, phytantriol, bergamot (citrus aurantium bergamia) fruit extract, glycerin¹, loquat (eriobotrya japonica) leaf extract, hydrolyzed quinoa, hydrolyzed flax protein, geranium (pelargonium graveolens) oil, lemon (citrus limon) peel extract, sage (salvia officinalis) oil, apple (pyrus malus) fruit extract, vanilla planifolia fruit extract, patchouli (pogostemon cablin) leaf extract, hydrolyzed corn protein², broadbean (vicia faba) seed extract, sunflower (helianthus annuus) seed extract, glycerin², vitamin B7 (biotin), sodium hydroxide, citric acid."
-    .split(",")
-    .map(string => string.trim());
-
-  console.log(categorize(ingList, ingDict, { minSimilarity: 0.85 }));
-}
-
-test();
+module.exports = {
+  categorize
+};
