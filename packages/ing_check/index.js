@@ -1,4 +1,5 @@
 const StringSimilarity = require("string-similarity");
+const ingDict = require("./data/ingDict");
 
 /**
  * Ingredient details
@@ -79,5 +80,6 @@ function categorize(ingList, ingDict, option) {
 }
 
 module.exports = {
-  categorize
+  categorize,
+  ingDict
 };
