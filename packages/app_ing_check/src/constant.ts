@@ -6,7 +6,8 @@ enum INGREDIENT_CATEGORY {
   NON_VEGETARIAN = "Non-Vegetarian",
   VEGAN = "Vegan",
   VEGETARIAN = "Vegetarian",
-  UNSPECIFIED = "unspecified"
+  UNSPECIFIED = "unspecified",
+  UNSURE = "unsure"
 }
 
 export { INGREDIENT_CATEGORY };
