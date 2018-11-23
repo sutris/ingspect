@@ -39,11 +39,26 @@ const ingDict = require("./data/ingDict");
  */
 
 /**
+ * @typedef {Object} IngredientInfo
+ * @property {string} name
+ * @property {string} category
+ * @property {string} definition
+ */
+
+/**
+ * @typedef {Object} Ingredient
+ * @property {string} ingQuery the queried ingredient name
+ * @property {number} confidence similarity between the queried ingredient with the best match of ingredient in the dictionary. 0 is the lowest, 1 is the highest.
+ * @property {Array<IngredientInfo>} infos list of information that is associated with the queried ingredient
+ */
+
+/**
  * Categorize ingredients
  *
  * @param {string[]} ingList a list of ingredients to be categorized
  * @param {IngredientDictionary} ingDict
  * @param {CategorizeOption} option
+ * @returns {Object.<string, Array<Ingredient>>} map between category with the ingredients categorized as that category
  */
 function categorize(ingList, ingDict, option) {
   const ingNames = Object.keys(ingDict.ingNameToInfoKeys);
@@ -53,14 +68,31 @@ function categorize(ingList, ingDict, option) {
     const {
       bestMatch: { target, rating }
     } = StringSimilarity.findBestMatch(ing, ingNames);
-    const infoKey = ingDict.ingNameToInfoKeys[target];
-    const ingInfo = ingDict.infoKeyToInfoDetails[infoKey];
-    let { category, definition } = ingInfo;
 
-    let minRating = (option && option.minSimilarity) || 1;
+    const infoKeys = ingDict.ingNameToInfoKeys[target];
+    const minRating = (option && option.minSimilarity) || 1;
+
+    let category;
+    let infos = [];
 
     if (rating < minRating) {
       category = "unsure";
+    } else {
+      infos = infoKeys.map(infoKey => {
+        const ingInfo = ingDict.infoKeyToInfoDetails[infoKey];
+
+        let { category, definition } = ingInfo;
+
+        return {
+          name: infoKey,
+          category,
+          definition
+        };
+      });
+
+      const categoriesArr = infos.map(info => info.category);
+      const categoriesSet = new Set(categoriesArr);
+      category = categoriesSet.size === 1 ? categoriesArr[0] : "unsure";
     }
 
     if (!result[category]) {
@@ -68,11 +100,9 @@ function categorize(ingList, ingDict, option) {
     }
 
     result[category].push({
-      name: target,
-      category,
-      definition,
-      real_name: ing,
-      confidence: rating
+      ingQuery: ing,
+      confidence: rating,
+      infos
     });
   });
 
