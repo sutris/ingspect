@@ -4,13 +4,13 @@ import React, { Component, ChangeEvent } from "react";
 import * as ingCheck from "ing_check";
 import "normalize.css";
 
-// import SearchResult from "./SearchResult";
-// import { INGREDIENT_CATEGORY } from "./constant";
+import SearchResult from "./SearchResult";
 
 import "./App.css";
 
 interface AppState {
   searchText: string;
+  searchResult: ingCheck.ICategorizeResult;
 }
 
 class App extends Component<{}, AppState> {
@@ -20,7 +20,8 @@ class App extends Component<{}, AppState> {
     super(props);
 
     this.state = {
-      searchText: ""
+      searchText: "",
+      searchResult: {}
     };
   }
 
@@ -32,7 +33,7 @@ class App extends Component<{}, AppState> {
 
   handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
-      const ingList = this.state.searchText.split(",");
+      const ingList = this.state.searchText.split(",").map(ing => ing.trim());
       const categorizeOption = { minSimilarity: 0.85 };
 
       const result = ingCheck.categorize(
@@ -40,6 +41,8 @@ class App extends Component<{}, AppState> {
         ingCheck.ingDict,
         categorizeOption
       );
+
+      this.setState({ searchResult: result });
     }
   };
 
@@ -48,6 +51,8 @@ class App extends Component<{}, AppState> {
   };
 
   render() {
+    const { searchResult } = this.state;
+
     return (
       <div className="app">
         <div className="logo" />
@@ -61,6 +66,7 @@ class App extends Component<{}, AppState> {
           onKeyPress={this.handleKeyPress}
           onChange={this.handleInputChange}
         />
+        {searchResult ? <SearchResult result={searchResult} /> : null}
       </div>
     );
   }
