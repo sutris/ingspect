@@ -1,29 +1,25 @@
 /// <reference path="../definition/ing_check.d.ts"/>
 
 import React, { Component, ChangeEvent } from "react";
+import { connect } from "react-redux";
 import * as ingCheck from "ing_check";
 import "normalize.css";
 
 import SearchResult from "./SearchResult";
+import { changeSearchInput, doSearch } from "./actions";
+import { AppState } from "./reducers";
 
 import "./App.css";
 
-interface AppState {
+interface IAppProps {
   searchText: string;
   searchResult: ingCheck.ICategorizeResult;
+  doSearch: Function;
+  changeSearchInput: Function;
 }
 
-class App extends Component<{}, AppState> {
+class App extends Component<IAppProps> {
   private searchInput: HTMLInputElement | null = null;
-
-  constructor(props: {}) {
-    super(props);
-
-    this.state = {
-      searchText: "",
-      searchResult: {}
-    };
-  }
 
   componentDidMount() {
     if (this.searchInput) {
@@ -33,25 +29,16 @@ class App extends Component<{}, AppState> {
 
   handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
-      const ingList = this.state.searchText.split(",").map(ing => ing.trim());
-      const categorizeOption = { minSimilarity: 0.85 };
-
-      const result = ingCheck.categorize(
-        ingList,
-        ingCheck.ingDict,
-        categorizeOption
-      );
-
-      this.setState({ searchResult: result });
+      this.props.doSearch(this.props.searchText);
     }
   };
 
   handleInputChange = (ele: ChangeEvent<HTMLInputElement>) => {
-    this.setState({ searchText: ele.target.value });
+    this.props.changeSearchInput(ele.target.value);
   };
 
   render() {
-    const { searchResult } = this.state;
+    const { searchResult } = this.props;
 
     return (
       <div className="app">
@@ -71,5 +58,16 @@ class App extends Component<{}, AppState> {
     );
   }
 }
+const mapStateToProps = (state: AppState) => {
+  return {
+    searchText: state.searchText,
+    searchResult: state.searchResult
+  };
+};
 
-export default App;
+const mapDispatchToProps = { changeSearchInput, doSearch };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
