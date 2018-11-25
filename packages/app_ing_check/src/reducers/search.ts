@@ -21,7 +21,6 @@ const searchResult: Reducer<ICategorizeResult, AllAction> = (
   state = {},
   action
 ) => {
-  console.log(`searchResult reducer: ${action.type}`);
   switch (action.type) {
     case ACTION_TYPE.DO_SEARCH:
       const ingList = action.query.split(",").map(ing => ing.trim());
@@ -33,7 +32,6 @@ const searchResult: Reducer<ICategorizeResult, AllAction> = (
         categorizeOption
       );
 
-      console.log(`searchResult: ${JSON.stringify(result, null, 4)}`);
       return result;
     default:
       return state;
