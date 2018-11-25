@@ -13,7 +13,7 @@ const SearchResultPage = (props: ISearchResultPageProps) => {
   return (
     <>
       <div className="header">
-        <Logo />
+        <Logo inline small />
         <SearchInput />
       </div>
       <SearchResult result={props.result} />

@@ -4,3 +4,12 @@
   border-radius: 50%;
   background: skyblue;
 }
+
+.logo--inline {
+  display: inline-block;
+}
+
+.logo--small {
+  width: 60px;
+  height: 60px;
+}

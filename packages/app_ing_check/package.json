@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
     "ing_check": "file:../ing_check",
     "normalize.css": "^8.0.1",
     "react": "^16.6.1",
@@ -32,6 +33,7 @@
     "yarn": "^0.24.6"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.6",
     "@types/jest": "^23.3.9",
     "@types/node": "^10.12.5",
     "@types/react": "^16.7.2",
