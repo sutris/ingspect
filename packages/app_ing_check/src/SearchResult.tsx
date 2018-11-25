@@ -66,7 +66,7 @@ const ResultCategory = (props: IResultCategoryProps) => {
 
   return (
     <div className="categoryGroup">
-      <h2>{name}</h2>
+      <h2>{props.name}</h2>
       {ingredients}
     </div>
   );
