@@ -1,8 +1,11 @@
+@value vars: "./vars.module.css";
+@value search-result-page-side-padding from vars;
+
 .header {
   background: lightgray;
   display: flex;
   align-items: center;
-  padding: 20px 30px;
+  padding: 20px search-result-page-side-padding;
 }
 
 .input {

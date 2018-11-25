@@ -1,0 +1,6 @@
+@value vars: "./vars.module.css";
+@value search-result-page-side-padding from vars;
+
+.searchResult {
+  padding: 20px search-result-page-side-padding;
+}

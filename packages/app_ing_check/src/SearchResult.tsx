@@ -109,7 +109,7 @@ const SearchResult = (props: ISearchResultProps) => {
     }
   });
 
-  return <>{result}</>;
+  return <div className={styles.searchResult}>{result}</div>;
 };
 
 export default SearchResult;
