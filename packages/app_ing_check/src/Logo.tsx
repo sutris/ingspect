@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-import "./Logo.css";
+import styles from "./Logo.module.css";
 
 interface ILogoProps {
   inline?: boolean;
@@ -11,9 +11,9 @@ interface ILogoProps {
 const Logo = (props: ILogoProps) => {
   return (
     <div
-      className={classNames("logo", {
-        "logo--inline": props.inline,
-        "logo--small": props.small
+      className={classNames(styles.logo, {
+        [styles["logo--inline"]]: props.inline,
+        [styles["logo--small"]]: props.small
       })}
     />
   );

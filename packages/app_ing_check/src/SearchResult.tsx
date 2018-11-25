@@ -3,7 +3,7 @@ import { ICategorizeResult, IIngredientResult } from "ing_check";
 
 import { INGREDIENT_CATEGORY } from "./constant";
 
-import "./SearchResult.css";
+import styles from "./SearchResult.module.css";
 
 const ResultIngredient = (props: IIngredientResult) => {
   const { ingQuery, infos, confidence } = props;

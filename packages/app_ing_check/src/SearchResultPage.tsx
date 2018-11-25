@@ -5,7 +5,7 @@ import Logo from "./Logo";
 import SearchInput from "./SearchInput";
 import SearchResult from "./SearchResult";
 
-import "./SearchResultPage.css";
+import styles from "./SearchResultPage.module.css";
 
 interface ISearchResultPageProps {
   result: ICategorizeResult;
@@ -14,9 +14,9 @@ interface ISearchResultPageProps {
 const SearchResultPage = (props: ISearchResultPageProps) => {
   return (
     <div className="searchResultPage">
-      <div className="searchResultPage__header">
+      <div className={styles.header}>
         <Logo inline small />
-        <SearchInput className="searchResultPage__input" />
+        <SearchInput className={styles.input} />
       </div>
       <SearchResult result={props.result} />
     </div>

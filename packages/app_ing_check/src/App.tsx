@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import * as ingCheck from "ing_check";
 
 import "normalize.css";
-import "./App.css";
+import styles from "./App.module.css";
 
 import SearchResultPage from "./SearchResultPage";
 import Logo from "./Logo";
@@ -24,9 +24,9 @@ class App extends Component<IAppProps> {
       return <SearchResultPage result={searchResult} />;
     } else {
       return (
-        <div className="app">
+        <div className={styles.app}>
           <Logo />
-          <SearchInput className="app__searchInput" />
+          <SearchInput className={styles.searchInput} />
         </div>
       );
     }

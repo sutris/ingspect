@@ -1,10 +1,11 @@
 import React, { Component, ChangeEvent } from "react";
 import { connect } from "react-redux";
+import classNames from "classnames";
 
 import { changeSearchInput, doSearch } from "./actions";
 import { AppState } from "./reducers";
 
-import "./SearchInput.css";
+import styles from "./SearchInput.module.css";
 
 interface ISearchInputProps {
   searchText: string;
@@ -38,7 +39,7 @@ class SearchInput extends Component<ISearchInputProps> {
         ref={el => {
           this.searchInput = el;
         }}
-        className={`searchInput ${this.props.className}`}
+        className={classNames(styles.searchInput, this.props.className)}
         type="text"
         placeholder="Put ingredient list here"
         onKeyPress={this.handleKeyPress}
