@@ -7,7 +7,7 @@ import * as ingCheck from "ing_check";
 import "normalize.css";
 import "./App.css";
 
-import SearchResult from "./SearchResult";
+import SearchResultPage from "./SearchResultPage";
 import Logo from "./Logo";
 import SearchInput from "./SearchInput";
 import { AppState } from "./reducers";
@@ -20,13 +20,16 @@ class App extends Component<IAppProps> {
   render() {
     const { searchResult } = this.props;
 
-    return (
-      <div className="app">
-        <Logo />
-        <SearchInput className="app__searchInput" />
-        {searchResult ? <SearchResult result={searchResult} /> : null}
-      </div>
-    );
+    if (Object.keys(searchResult).length > 0) {
+      return <SearchResultPage result={searchResult} />;
+    } else {
+      return (
+        <div className="app">
+          <Logo />
+          <SearchInput className="app__searchInput" />
+        </div>
+      );
+    }
   }
 }
 
