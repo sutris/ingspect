@@ -1,0 +1,10 @@
+.searchResultPage__header {
+  background: lightgray;
+  display: flex;
+  align-items: center;
+  padding: 20px 30px;
+}
+
+.searchResultPage__input {
+  margin-left: 15px;
+}
