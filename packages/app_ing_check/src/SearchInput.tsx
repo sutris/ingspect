@@ -44,6 +44,7 @@ class SearchInput extends Component<ISearchInputProps> {
         placeholder="Put ingredient list here"
         onKeyPress={this.handleKeyPress}
         onChange={this.handleInputChange}
+        value={this.props.searchText}
       />
     );
   }
