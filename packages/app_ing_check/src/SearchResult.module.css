@@ -67,9 +67,9 @@
   margin: 0;
 }
 
-.ingredient__detail, .ingredient__preDetail {
-  padding: 10px ingredient-card-horizontal-padding
-    ingredient-card-vertical-padding;
+.ingredient__detail,
+.ingredient__preDetail {
+  padding: 10px ingredient-card-horizontal-padding ingredient-card-vertical-padding;
   margin: 0; /* reset */
 }
 

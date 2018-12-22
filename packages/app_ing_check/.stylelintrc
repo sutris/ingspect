@@ -4,8 +4,14 @@
         "stylelint-no-unsupported-browser-features"
     ],
     "rules": {
+        "at-rule-no-unknown": [true, {
+            "ignoreAtRules": ["value"]
+        }],
         "plugin/no-unsupported-browser-features": [true, {
-            "severity": "error"
-        }]
+            "ignore": [
+                "// grid-template-columns and grid-gap is misidentified as multicolumn (https://github.com/anandthakker/doiuse/issues/100)",
+                "multicolumn",
+            ]
+        }],
     }
 }
