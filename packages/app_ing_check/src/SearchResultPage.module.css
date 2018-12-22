@@ -8,6 +8,12 @@
   padding: 20px search-result-page-side-padding;
 }
 
+.logo {
+  flex-shrink: 0;
+}
+
 .input {
   margin-left: 15px;
+  min-width: 0;
+  max-width: 350px;
 }

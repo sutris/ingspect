@@ -1,5 +1,6 @@
 import React from "react";
 import { ICategorizeResult, IIngredientResult } from "ing_check";
+import classNames from "classnames";
 
 import { INGREDIENT_CATEGORY } from "./constant";
 
@@ -14,18 +15,26 @@ const ResultIngredient = (props: IIngredientResult) => {
 
       return (
         <li key={iii}>
-          <h4>
+          <h4 className={styles["ingredient__synonym"]}>
             {name} ({category})
           </h4>
-          <p>{definition}</p>
+          <p className={styles["ingredient__synonymDetail"]}>{definition}</p>
         </li>
       );
     });
 
     return (
-      <div className="ingredient">
-        <h3>{ingQuery}</h3>
-        <ul>{infosElem}</ul>
+      <div className={styles.ingredient}>
+        <h3 className={styles["ingredient__name"]}>{ingQuery}</h3>
+        <p className={styles["ingredient__preDetail"]}>Ingredient may refer to one of the following definition:</p>
+        <ul
+          className={classNames(
+            styles["ingredient__detail"],
+            styles["ingredient__detail--list"]
+          )}
+        >
+          {infosElem}
+        </ul>
       </div>
     );
   } else if (infos.length === 1) {
@@ -40,15 +49,21 @@ const ResultIngredient = (props: IIngredientResult) => {
         </>
       );
     return (
-      <div className="ingredient">
-        <h3>{ingName}</h3>
-        <p>{definition}</p>
+      <div className={styles.ingredient}>
+        <h3 className={styles["ingredient__name"]}>{ingName}</h3>
+        <p className={styles["ingredient__detail"]}>{definition}</p>
       </div>
     );
   } else {
     return (
-      <div className="ingredient">
-        <h3>{ingQuery}</h3>
+      <div className={styles.ingredient}>
+        <h3 className={styles["ingredient__name"]}>{ingQuery}</h3>
+        <p className={classNames(
+          styles["ingredient__detail"],
+          styles["ingredient__detail--empty"]
+        )}>
+          Ingredient not found in database
+        </p>
       </div>
     );
   }
@@ -61,13 +76,15 @@ interface IResultCategoryProps {
 
 const ResultCategory = (props: IResultCategoryProps) => {
   const ingredients = props.ingredients.map((ingredient, index) => (
-    <ResultIngredient {...ingredient} key={index} />
+    <li className={styles["categoryGroup__ingListItem"]} key={index}>
+      <ResultIngredient {...ingredient} />
+    </li>
   ));
 
   return (
-    <div className="categoryGroup">
-      <h2>{props.name}</h2>
-      {ingredients}
+    <div className={styles.categoryGroup}>
+      <h2 className={styles["categoryGroup__name"]}>{props.name}</h2>
+      <ul className={styles["categoryGroup__ingList"]}>{ingredients}</ul>
     </div>
   );
 };

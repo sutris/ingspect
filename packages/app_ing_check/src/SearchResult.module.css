@@ -4,3 +4,87 @@
 .searchResult {
   padding: 20px search-result-page-side-padding;
 }
+
+@value category-group-horizontal-padding: 30px;
+@value category-group-vertical-padding: 25px;
+
+.categoryGroup {
+  border: solid 1px lightgray;
+}
+
+.categoryGroup:not(:last-child) {
+  margin-bottom: 25px;
+}
+
+.categoryGroup__name {
+  background: lightgray;
+  padding: category-group-vertical-padding category-group-horizontal-padding;
+  margin: 0;
+}
+
+@value ing-list-grid-gap: 20px;
+
+.categoryGroup__ingList {
+  padding: category-group-vertical-padding category-group-horizontal-padding;
+  list-style: none;
+  margin: 0;
+  display: grid;
+  grid-row-gap: ing-list-grid-gap;
+}
+
+@media (min-width: 600px) {
+  .categoryGroup__ingList {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: ing-list-grid-gap;
+  }
+}
+
+@media (min-width: 950px) {
+  .categoryGroup {
+    display: flex;
+  }
+
+  .categoryGroup__name {
+    flex: 0 0 200px;
+  }
+
+  .categoryGroup__ingList {
+    flex: 1 0 0;
+    grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
+  }
+}
+
+@value ingredient-card-horizontal-padding: 10px;
+@value ingredient-card-vertical-padding: 10px;
+
+.ingredient {
+  border: solid 1px lightgray;
+}
+
+.ingredient__name {
+  background: lightgray;
+  padding: ingredient-card-vertical-padding ingredient-card-horizontal-padding;
+  margin: 0;
+}
+
+.ingredient__detail, .ingredient__preDetail {
+  padding: 10px ingredient-card-horizontal-padding
+    ingredient-card-vertical-padding;
+  margin: 0; /* reset */
+}
+
+.ingredient__detail--empty {
+  font-style: italic;
+}
+
+.ingredient__detail--list {
+  padding-left: 24px;
+}
+
+.ingredient__synonym {
+  margin: 0; /* reset */
+}
+
+.ingredient__synonymDetail {
+  margin: 8px 0 15px;
+}

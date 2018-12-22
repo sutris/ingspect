@@ -13,9 +13,9 @@ interface ISearchResultPageProps {
 
 const SearchResultPage = (props: ISearchResultPageProps) => {
   return (
-    <div className="searchResultPage">
+    <div>
       <div className={styles.header}>
-        <Logo inline small />
+        <Logo inline small className={styles.logo} />
         <SearchInput className={styles.input} />
       </div>
       <SearchResult result={props.result} />
