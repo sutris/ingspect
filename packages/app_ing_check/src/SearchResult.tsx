@@ -97,21 +97,37 @@ interface ISearchResultProps {
   result: ICategorizeResult;
 }
 
-const SearchResult = (props: ISearchResultProps) => {
-  const CATEGORY_ORDER: string[] = [
-    INGREDIENT_CATEGORY.VEGAN,
-    INGREDIENT_CATEGORY.VEGETARIAN,
-    INGREDIENT_CATEGORY.TYPICALLY_VEGAN,
-    INGREDIENT_CATEGORY.TYPICALLY_VEGETARIAN,
-    INGREDIENT_CATEGORY.MAYBE_NON_VEGETARIAN,
-    INGREDIENT_CATEGORY.TYPECALLY_NON_VEGETARIAN,
-    INGREDIENT_CATEGORY.NON_VEGETARIAN,
-    INGREDIENT_CATEGORY.UNSURE,
-    INGREDIENT_CATEGORY.UNSPECIFIED
-  ];
+const ResultStats = (props: ISearchResultProps) => {
+  const categoryLengths = Object.keys(props.result)
+    .map(categoryName => ({
+      name: categoryName,
+      length: props.result[categoryName as INGREDIENT_CATEGORY]!.length
+    }))
+    .sort((a, b) => b.length - a.length);
+  const totalIngredients = categoryLengths.reduce(
+    (sum, categoryLength) => sum + categoryLength.length,
+    0
+  );
+  const categoryPercentages = categoryLengths.map(categoryLength =>
+    ((categoryLength.length * 100) / totalIngredients).toFixed(2)
+  );
 
+  const categoryStatsArr = categoryPercentages.map(
+    (percentage, index) => `${percentage}% ${categoryLengths[index].name}`
+  );
+  const categoryStatsStr = [
+    categoryStatsArr.slice(0, -1).join(", "),
+    categoryStatsArr[categoryStatsArr.length - 1]
+  ].join(" and ");
+
+  return <p>The ingredients are categorized as {categoryStatsStr}.</p>;
+};
+
+const SearchResult = (props: ISearchResultProps) => {
   const categories = Object.keys(props.result).sort(
-    (a, b) => CATEGORY_ORDER.indexOf(a) - CATEGORY_ORDER.indexOf(b)
+    (a, b) =>
+      props.result[b as INGREDIENT_CATEGORY]!.length -
+      props.result[a as INGREDIENT_CATEGORY]!.length
   );
 
   const result = categories.map((categoryName, index) => {
@@ -130,7 +146,12 @@ const SearchResult = (props: ISearchResultProps) => {
     }
   });
 
-  return <div className={styles.searchResult}>{result}</div>;
+  return (
+    <div className={styles.searchResult}>
+      <ResultStats result={props.result} />
+      {result}
+    </div>
+  );
 };
 
 export default SearchResult;
