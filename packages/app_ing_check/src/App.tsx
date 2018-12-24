@@ -1,23 +1,24 @@
+// tslint:disable-next-line:no-reference
 /// <reference path="../definition/ing_check.d.ts"/>
 
+import * as ingCheck from "ing_check";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as ingCheck from "ing_check";
 
 import "normalize.css";
 import styles from "./App.module.css";
 
-import SearchResultPage from "./SearchResultPage";
 import Logo from "./Logo";
-import SearchInput from "./SearchInput";
 import { AppState } from "./reducers";
+import SearchInput from "./SearchInput";
+import SearchResultPage from "./SearchResultPage";
 
 interface IAppProps {
   searchResult: ingCheck.ICategorizeResult;
 }
 
 class App extends Component<IAppProps> {
-  render() {
+  public render() {
     const { searchResult } = this.props;
 
     if (Object.keys(searchResult).length > 0) {

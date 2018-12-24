@@ -1,6 +1,6 @@
-import React from "react";
-import { ICategorizeResult, IIngredientResult } from "ing_check";
 import classNames from "classnames";
+import { ICategorizeResult, IIngredientResult } from "ing_check";
+import React from "react";
 
 import { INGREDIENT_CATEGORY } from "./constant";
 
@@ -26,7 +26,9 @@ const ResultIngredient = (props: IIngredientResult) => {
     return (
       <div className={styles.ingredient}>
         <h3 className={styles["ingredient__name"]}>{ingQuery}</h3>
-        <p className={styles["ingredient__preDetail"]}>Ingredient may refer to one of the following definition:</p>
+        <p className={styles["ingredient__preDetail"]}>
+          Ingredient may refer to one of the following definition:
+        </p>
         <ul
           className={classNames(
             styles["ingredient__detail"],
@@ -58,10 +60,12 @@ const ResultIngredient = (props: IIngredientResult) => {
     return (
       <div className={styles.ingredient}>
         <h3 className={styles["ingredient__name"]}>{ingQuery}</h3>
-        <p className={classNames(
-          styles["ingredient__detail"],
-          styles["ingredient__detail--empty"]
-        )}>
+        <p
+          className={classNames(
+            styles["ingredient__detail"],
+            styles["ingredient__detail--empty"]
+          )}
+        >
           Ingredient not found in database
         </p>
       </div>

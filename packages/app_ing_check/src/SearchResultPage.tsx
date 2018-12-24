@@ -1,5 +1,5 @@
-import React from "react";
 import { ICategorizeResult } from "ing_check";
+import React from "react";
 
 import Logo from "./Logo";
 import SearchInput from "./SearchInput";
@@ -15,7 +15,7 @@ const SearchResultPage = (props: ISearchResultPageProps) => {
   return (
     <div>
       <div className={styles.header}>
-        <Logo inline small className={styles.logo} />
+        <Logo inline={true} small={true} className={styles.logo} />
         <SearchInput className={styles.input} />
       </div>
       <SearchResult result={props.result} />

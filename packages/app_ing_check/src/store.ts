@@ -1,10 +1,12 @@
 import { createStore } from "redux";
 
-import app, { AppState } from "./reducers";
 import { AllAction } from "./actions";
+import app, { AppState } from "./reducers";
 
 declare global {
+  // tslint:disable-next-line:interface-name
   interface Window {
+    // tslint:disable-next-line:ban-types
     __REDUX_DEVTOOLS_EXTENSION__: Function;
   }
 }

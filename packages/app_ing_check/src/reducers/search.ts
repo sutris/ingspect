@@ -1,5 +1,5 @@
-import { Reducer, combineReducers } from "redux";
 import ingCheck, { ICategorizeResult } from "ing_check";
+import { combineReducers, Reducer } from "redux";
 
 import { ACTION_TYPE, AllAction } from "../actions";
 
