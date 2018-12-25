@@ -1,0 +1,27 @@
+.inputEle {
+  /* hiding inspired by https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/ */
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+
+.button {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  color: grey;
+  padding: 5px;
+}
+
+.button svg {
+  fill: currentColor;
+}
+
+.inputEle--isFocus + .button,
+.inputEle:focus + .button {
+  outline: 1px dotted #000;
+  outline: -webkit-focus-ring-color auto 5px;
+}

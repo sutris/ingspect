@@ -9,6 +9,7 @@ import "normalize.css";
 import styles from "./App.module.css";
 
 import Logo from "./Logo";
+import PictureTaker from "./PictureTaker";
 import { AppState } from "./reducers";
 import SearchInput from "./SearchInput";
 import SearchResultPage from "./SearchResultPage";
@@ -27,7 +28,10 @@ class App extends Component<IAppProps> {
       return (
         <div className={styles.app}>
           <Logo />
-          <SearchInput className={styles.searchInput} />
+          <div className={styles.searchContainer}>
+            <SearchInput className={styles.searchInput} />
+            <PictureTaker className={styles.pictureTaker} />
+          </div>
         </div>
       );
     }

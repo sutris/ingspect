@@ -7,6 +7,16 @@
   align-items: center;
 }
 
-.searchInput {
+.searchContainer {
   margin-top: 20px;
+  display: flex;
+}
+
+.searchInput {
+  flex: 1 0 0;
+  margin-right: 12px;
+}
+
+.pictureTaker {
+  flex: 0 0 auto;
 }
