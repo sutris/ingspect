@@ -52,7 +52,7 @@ class SearchInput extends Component<ISearchInputProps> {
 
 const mapStateToProps = (state: AppState) => {
   return {
-    searchText: state.searchText
+    searchText: state.search.searchText
   };
 };
 

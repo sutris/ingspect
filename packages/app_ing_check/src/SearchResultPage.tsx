@@ -3,6 +3,7 @@ import React from "react";
 
 import Logo from "./Logo";
 import PictureTaker from "./PictureTaker";
+import ProgressBar from "./ProgressBar";
 import SearchInput from "./SearchInput";
 import SearchResult from "./SearchResult";
 
@@ -10,6 +11,7 @@ import styles from "./SearchResultPage.module.css";
 
 interface ISearchResultPageProps {
   result: ICategorizeResult;
+  progress: number;
 }
 
 const SearchResultPage = (props: ISearchResultPageProps) => {
@@ -20,7 +22,10 @@ const SearchResultPage = (props: ISearchResultPageProps) => {
         <SearchInput className={styles.input} />
         <PictureTaker className={styles.pictureTaker} />
       </div>
-      <SearchResult result={props.result} />
+      <ProgressBar progress={props.progress} />
+      {Object.keys(props.result).length > 0 ? (
+        <SearchResult result={props.result} />
+      ) : null}
     </div>
   );
 };

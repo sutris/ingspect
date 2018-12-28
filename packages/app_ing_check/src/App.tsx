@@ -16,14 +16,15 @@ import SearchResultPage from "./SearchResultPage";
 
 interface IAppProps {
   searchResult: ingCheck.ICategorizeResult;
+  progress: number;
 }
 
 class App extends Component<IAppProps> {
   public render() {
-    const { searchResult } = this.props;
+    const { searchResult, progress } = this.props;
 
-    if (Object.keys(searchResult).length > 0) {
-      return <SearchResultPage result={searchResult} />;
+    if (Object.keys(searchResult).length > 0 || progress > 0) {
+      return <SearchResultPage result={searchResult} progress={progress} />;
     } else {
       return (
         <div className={styles.app}>
@@ -40,7 +41,8 @@ class App extends Component<IAppProps> {
 
 const mapStateToProps = (state: AppState) => {
   return {
-    searchResult: state.searchResult
+    searchResult: state.search.searchResult,
+    progress: state.progress
   };
 };
 

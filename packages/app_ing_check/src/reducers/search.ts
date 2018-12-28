@@ -40,7 +40,7 @@ const searchResult: Reducer<ICategorizeResult, AllAction> = (
   }
 };
 
-const combinedReducers = combineReducers<ISearchState>({
+const combinedReducers = combineReducers<ISearchState, AllAction>({
   searchText,
   searchResult
 });

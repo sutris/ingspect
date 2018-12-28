@@ -1,5 +1,18 @@
+import { combineReducers } from "redux";
+
+import { AllAction } from "../actions";
+import progress from "./loading";
 import search, { ISearchState } from "./search";
 
-export type AppState = ISearchState;
+// tslint:disable-next-line:interface-name
+export interface AppState {
+  search: ISearchState;
+  progress: number;
+}
 
-export default search;
+const combinedReducers = combineReducers<AppState, AllAction>({
+  search,
+  progress
+});
+
+export default combinedReducers;

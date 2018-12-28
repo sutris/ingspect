@@ -1,5 +1,8 @@
 import classnames from "classnames";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+
+import { recognizePicture } from "./actions";
 
 import styles from "./PictureTaker.module.css";
 
@@ -9,6 +12,7 @@ interface IPictureTakerState {
 
 interface IPictureTakerProps {
   className?: string;
+  recognizePicture: (...arg: any) => any;
 }
 
 const CameraIcon = () => {
@@ -44,6 +48,7 @@ class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
           })}
           onFocus={this.onFocus}
           onBlur={this.onBlur}
+          onChange={this.onChange}
         />
         <label
           htmlFor="pictureTaker"
@@ -63,6 +68,24 @@ class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
   private onBlur = () => {
     this.setState({ isFocus: false });
   };
+
+  private onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+
+    if (files && files.length > 0) {
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        this.props.recognizePicture(file);
+      }
+    }
+  };
 }
 
-export default PictureTaker;
+const mapDispatchToProps = { recognizePicture };
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(PictureTaker);
