@@ -2,7 +2,14 @@ import { Reducer } from "redux";
 
 import { ACTION_TYPE, AllAction } from "../actions";
 
-const progress: Reducer<number, AllAction> = (state = 0, action) => {
+export type ProgressState = IProgressObject | null;
+
+interface IProgressObject {
+  status: string;
+  progress: number;
+}
+
+const progress: Reducer<ProgressState, AllAction> = (state = null, action) => {
   switch (action.type) {
     case ACTION_TYPE.SET_PROGRESS:
       return action.progress;

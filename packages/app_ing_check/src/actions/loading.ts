@@ -4,12 +4,17 @@ export enum LOADING_ACTION_TYPE {
   SET_PROGRESS = "SET_PROGRESS"
 }
 
-export interface ISetProgressAction extends Action {
-  type: LOADING_ACTION_TYPE.SET_PROGRESS;
+interface IProgressObject {
+  status: string;
   progress: number;
 }
 
-function setProgress(progress: number): ISetProgressAction {
+export interface ISetProgressAction extends Action {
+  type: LOADING_ACTION_TYPE.SET_PROGRESS;
+  progress: IProgressObject;
+}
+
+function setProgress(progress: IProgressObject): ISetProgressAction {
   return {
     type: LOADING_ACTION_TYPE.SET_PROGRESS,
     progress

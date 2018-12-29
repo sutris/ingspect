@@ -25,9 +25,7 @@ class OCRManager extends EventEmitter {
     const job = this.recognizer.recognize(file);
 
     job.progress(jobProgress => {
-      if (jobProgress.status === "recognizing text") {
-        this.emit(EVENTS.RECOGNIZE_PROGRESS, jobProgress.progress);
-      }
+      this.emit(EVENTS.RECOGNIZE_PROGRESS, jobProgress);
     });
 
     job.then(result => {

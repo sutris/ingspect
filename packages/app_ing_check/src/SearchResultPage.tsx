@@ -11,7 +11,10 @@ import styles from "./SearchResultPage.module.css";
 
 interface ISearchResultPageProps {
   result: ICategorizeResult;
-  progress: number;
+  progress: {
+    status: string;
+    progress: number;
+  } | null;
 }
 
 const SearchResultPage = (props: ISearchResultPageProps) => {
@@ -22,7 +25,7 @@ const SearchResultPage = (props: ISearchResultPageProps) => {
         <SearchInput className={styles.input} />
         <PictureTaker className={styles.pictureTaker} />
       </div>
-      <ProgressBar progress={props.progress} />
+      {props.progress ? <ProgressBar progress={props.progress} /> : null}
       {Object.keys(props.result).length > 0 ? (
         <SearchResult result={props.result} />
       ) : null}
