@@ -14,7 +14,7 @@ class OCRManager extends EventEmitter {
 
     this.recognizer = Tesseract.create({
       workerPath:
-        "https://cdn.jsdelivr.net/gh/naptha/tesseract.js/dist/worker.js",
+        "https://cdn.jsdelivr.net/gh/naptha/tesseract.js/dist/worker.min.js",
       langPath: "https://tessdata.projectnaptha.com/3.02/",
       corePath:
         "https://cdn.jsdelivr.net/gh/naptha/tesseract.js-core@0.1.0/index.js"
