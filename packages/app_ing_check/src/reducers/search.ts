@@ -4,18 +4,8 @@ import { combineReducers, Reducer } from "redux";
 import { ACTION_TYPE, AllAction } from "../actions";
 
 export interface ISearchState {
-  searchText: string;
   searchResult: ICategorizeResult;
 }
-
-const searchText: Reducer<string, AllAction> = (state = "", action) => {
-  switch (action.type) {
-    case ACTION_TYPE.CHANGE_SEARCH_INPUT:
-      return action.text;
-    default:
-      return state;
-  }
-};
 
 const searchResult: Reducer<ICategorizeResult, AllAction> = (
   state = {},
@@ -41,7 +31,6 @@ const searchResult: Reducer<ICategorizeResult, AllAction> = (
 };
 
 const combinedReducers = combineReducers<ISearchState, AllAction>({
-  searchText,
   searchResult
 });
 
