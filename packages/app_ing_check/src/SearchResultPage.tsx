@@ -1,6 +1,7 @@
 import { ICategorizeResult } from "ing_check";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { doSearch } from "./actions";
 import Logo from "./Logo";
@@ -38,7 +39,9 @@ class SearchResultPage extends Component<ISearchResultPageProps> {
     return (
       <div>
         <div className={styles.header}>
-          <Logo inline={true} small={true} className={styles.logo} />
+          <Link to="/">
+            <Logo inline={true} small={true} className={styles.logo} />
+          </Link>
           <SearchInput
             className={styles.input}
             updateHistory={this.props.updateHistory}
