@@ -1,9 +1,8 @@
 // tslint:disable-next-line:no-reference
 /// <reference path="../definition/ing_check.d.ts"/>
 
-import * as ingCheck from "ing_check";
+import { History } from "history";
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
 import "normalize.css";
@@ -16,18 +15,8 @@ import { AppState } from "./reducers";
 import SearchInput from "./SearchInput";
 import SearchResultPage from "./SearchResultPage";
 
-interface IAppProps {
-  searchResult: ingCheck.ICategorizeResult;
-  progress: {
-    status: string;
-    progress: number;
-  } | null;
-}
-
-class App extends Component<IAppProps> {
+class App extends Component {
   public render() {
-    const { searchResult, progress } = this.props;
-
     return (
       <Router>
         <>
@@ -38,22 +27,33 @@ class App extends Component<IAppProps> {
             path="/"
             exact={true}
             // tslint:disable-next-line:jsx-no-lambda
-            render={() => {
-              if (Object.keys(searchResult).length > 0 || progress) {
-                return (
-                  <SearchResultPage result={searchResult} progress={progress} />
-                );
-              } else {
-                return (
-                  <div className={styles.app}>
-                    <Logo />
-                    <div className={styles.searchContainer}>
-                      <SearchInput className={styles.searchInput} />
-                      <PictureTaker className={styles.pictureTaker} />
-                    </div>
-                  </div>
-                );
-              }
+            render={({ history }) => (
+              <div className={styles.app}>
+                <Logo />
+                <div className={styles.searchContainer}>
+                  <SearchInput
+                    className={styles.searchInput}
+                    updateHistory={this.createHistoryUpdater(history)}
+                  />
+                  <PictureTaker className={styles.pictureTaker} />
+                </div>
+              </div>
+            )}
+          />
+          <Route
+            path="/search"
+            // tslint:disable-next-line:jsx-no-lambda
+            render={({ history }) => {
+              const currentUrl = new URL(window.location.href);
+              const searchQuery =
+                currentUrl.searchParams.get("search") || undefined;
+
+              return (
+                <SearchResultPage
+                  updateHistory={this.createHistoryUpdater(history)}
+                  searchQuery={searchQuery}
+                />
+              );
             }}
           />
           <Route path="/offline" component={OfflinePage} />
@@ -61,13 +61,11 @@ class App extends Component<IAppProps> {
       </Router>
     );
   }
+  private createHistoryUpdater(history: History): (newUrl: string) => void {
+    return (newUrl: string) => {
+      history.push(newUrl);
+    };
+  }
 }
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    searchResult: state.search.searchResult,
-    progress: state.progress
-  };
-};
-
-export default connect(mapStateToProps)(App);
+export default App;

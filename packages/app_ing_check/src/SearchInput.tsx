@@ -1,21 +1,43 @@
 import classNames from "classnames";
 import React, { ChangeEvent, Component } from "react";
-import { connect } from "react-redux";
 
-import { changeSearchInput, doSearch } from "./actions";
-import { AppState } from "./reducers";
+import { IHistoryUpdater } from "./shared";
 
 import styles from "./SearchInput.module.css";
 
-interface ISearchInputProps {
-  searchText: string;
-  doSearch: (...arg: any) => any;
-  changeSearchInput: (...arg: any) => any;
+interface ISearchInputProps extends IHistoryUpdater {
+  initialSearchQuery?: string;
   className?: string;
 }
 
-class SearchInput extends Component<ISearchInputProps> {
+interface ISearchInputState {
+  searchText?: string;
+}
+
+class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
+  public static getDerivedStateFromProps(
+    props: ISearchInputProps,
+    state: ISearchInputState
+  ) {
+    if (state.searchText === undefined) {
+      return {
+        searchText: props.initialSearchQuery
+      };
+    }
+
+    return {
+      searchText: state.searchText
+    };
+  }
   private searchInput: HTMLInputElement | null = null;
+
+  constructor(props: ISearchInputProps) {
+    super(props);
+
+    this.state = {
+      searchText: undefined
+    };
+  }
 
   public componentDidMount() {
     if (this.searchInput) {
@@ -24,13 +46,21 @@ class SearchInput extends Component<ISearchInputProps> {
   }
 
   public handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      this.props.doSearch(this.props.searchText);
+    if (event.key === "Enter" && this.state.searchText) {
+      const searchParams = new URLSearchParams(window.location.search);
+
+      searchParams.set("search", this.state.searchText);
+
+      const newPath = "/search/?" + searchParams.toString();
+
+      this.props.updateHistory(newPath);
     }
   };
 
   public handleInputChange = (ele: ChangeEvent<HTMLInputElement>) => {
-    this.props.changeSearchInput(ele.target.value);
+    this.setState({
+      searchText: ele.target.value
+    });
   };
 
   public render() {
@@ -44,21 +74,10 @@ class SearchInput extends Component<ISearchInputProps> {
         placeholder="Put ingredient list here"
         onKeyPress={this.handleKeyPress}
         onChange={this.handleInputChange}
-        value={this.props.searchText}
+        value={this.state.searchText}
       />
     );
   }
 }
 
-const mapStateToProps = (state: AppState) => {
-  return {
-    searchText: state.search.searchText
-  };
-};
-
-const mapDispatchToProps = { changeSearchInput, doSearch };
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchInput);
+export default SearchInput;
