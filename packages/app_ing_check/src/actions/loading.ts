@@ -1,7 +1,8 @@
 import { Action } from "redux";
 
 export enum LOADING_ACTION_TYPE {
-  SET_PROGRESS = "SET_PROGRESS"
+  SET_PROGRESS = "SET_PROGRESS",
+  RESET_PROGRESS = "RESET_PROGRESS"
 }
 
 interface IProgressObject {
@@ -21,4 +22,14 @@ function setProgress(progress: IProgressObject): ISetProgressAction {
   };
 }
 
-export { setProgress };
+export interface IResetProgressAction extends Action {
+  type: LOADING_ACTION_TYPE.RESET_PROGRESS;
+}
+
+function resetProgress(): IResetProgressAction {
+  return {
+    type: LOADING_ACTION_TYPE.RESET_PROGRESS
+  };
+}
+
+export { setProgress, resetProgress };

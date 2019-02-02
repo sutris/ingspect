@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import React, { ChangeEvent, Component } from "react";
 
-import { IHistoryUpdater } from "./shared";
+import { updateHistory } from "./history";
 
 import styles from "./SearchInput.module.css";
 
-interface ISearchInputProps extends IHistoryUpdater {
+interface ISearchInputProps {
   initialSearchQuery?: string;
   className?: string;
 }
@@ -47,13 +47,9 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
 
   public handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && this.state.searchText) {
-      const searchParams = new URLSearchParams(window.location.search);
-
-      searchParams.set("search", this.state.searchText);
-
-      const newPath = "/search/?" + searchParams.toString();
-
-      this.props.updateHistory(newPath);
+      updateHistory("/search", {
+        search: this.state.searchText
+      });
     }
   };
 

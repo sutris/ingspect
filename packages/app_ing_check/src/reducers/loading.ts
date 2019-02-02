@@ -13,6 +13,8 @@ const progress: Reducer<ProgressState, AllAction> = (state = null, action) => {
   switch (action.type) {
     case ACTION_TYPE.SET_PROGRESS:
       return action.progress;
+    case ACTION_TYPE.RESET_PROGRESS:
+      return null;
     default:
       return state;
   }

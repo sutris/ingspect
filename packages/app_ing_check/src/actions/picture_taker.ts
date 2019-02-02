@@ -2,9 +2,9 @@ import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
 import ocrManager, { EVENTS } from "../controlers/ocr";
+import { updateHistory } from "../history";
 import { AppState } from "../reducers/index";
-import { setProgress } from "./loading";
-import { changeSearchInput, doSearch } from "./search";
+import { resetProgress, setProgress } from "./loading";
 
 interface IProgressObject {
   status: string;
@@ -25,8 +25,11 @@ function recognizePicture(
     );
 
     ocrManager.addListener(EVENTS.RECOGNIZE_RESULT, (result: string) => {
-      dispatch(changeSearchInput(result));
-      dispatch(doSearch(result));
+      updateHistory("/search", {
+        search: result
+      });
+
+      dispatch(resetProgress());
 
       ocrManager.removeAllListeners();
     });
