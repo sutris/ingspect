@@ -1,12 +1,11 @@
 import classNames from "classnames";
 import React, { ChangeEvent, Component } from "react";
 
-import { updateHistory } from "./history";
+import historyManager, { HISTORY_EVENT } from "./history";
 
 import styles from "./SearchInput.module.css";
 
 interface ISearchInputProps {
-  initialSearchQuery?: string;
   className?: string;
 }
 
@@ -15,27 +14,13 @@ interface ISearchInputState {
 }
 
 class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
-  public static getDerivedStateFromProps(
-    props: ISearchInputProps,
-    state: ISearchInputState
-  ) {
-    if (state.searchText === undefined) {
-      return {
-        searchText: props.initialSearchQuery
-      };
-    }
-
-    return {
-      searchText: state.searchText
-    };
-  }
   private searchInput: HTMLInputElement | null = null;
 
   constructor(props: ISearchInputProps) {
     super(props);
 
     this.state = {
-      searchText: undefined
+      searchText: historyManager.getCurrentSearch()
     };
   }
 
@@ -43,11 +28,23 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
     if (this.searchInput) {
       this.searchInput.focus();
     }
+
+    historyManager.addListener(
+      HISTORY_EVENT.SEARCH_UPDATE,
+      this.onSearchUpdate
+    );
+  }
+
+  public componentWillUnmount() {
+    historyManager.removeListener(
+      HISTORY_EVENT.SEARCH_UPDATE,
+      this.onSearchUpdate
+    );
   }
 
   public handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && this.state.searchText) {
-      updateHistory("/search", {
+      historyManager.updateHistory("/search", {
         search: this.state.searchText
       });
     }
@@ -74,6 +71,14 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
       />
     );
   }
+
+  private onSearchUpdate = (search: string | undefined): void => {
+    if (search !== this.state.searchText) {
+      this.setState({
+        searchText: search
+      });
+    }
+  };
 }
 
 export default SearchInput;

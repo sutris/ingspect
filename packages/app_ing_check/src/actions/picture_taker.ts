@@ -2,7 +2,7 @@ import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
 import ocrManager, { EVENTS } from "../controlers/ocr";
-import { updateHistory } from "../history";
+import historyManager from "../history";
 import { AppState } from "../reducers/index";
 import { resetProgress, setProgress } from "./loading";
 
@@ -25,7 +25,7 @@ function recognizePicture(
     );
 
     ocrManager.addListener(EVENTS.RECOGNIZE_RESULT, (result: string) => {
-      updateHistory("/search", {
+      historyManager.updateHistory("/search", {
         search: result
       });
 

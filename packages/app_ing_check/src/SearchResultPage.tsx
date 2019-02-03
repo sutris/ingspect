@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { doSearch } from "./actions";
+import historyManager, { HISTORY_EVENT } from "./history";
 import Logo from "./Logo";
 import PictureTaker from "./PictureTaker";
 import { AppState } from "./reducers";
@@ -14,19 +15,24 @@ import styles from "./SearchResultPage.module.css";
 
 interface ISearchResultPageProps {
   result: ICategorizeResult;
-  searchQuery?: string;
   doSearch: (...arg: any) => any;
 }
 
 class SearchResultPage extends Component<ISearchResultPageProps> {
   public componentDidMount() {
-    this.props.doSearch(this.props.searchQuery);
+    historyManager.addListener(
+      HISTORY_EVENT.SEARCH_UPDATE,
+      this.onSearchUpdate
+    );
+
+    this.onSearchUpdate(historyManager.getCurrentSearch());
   }
 
-  public componentDidUpdate(prevProps: ISearchResultPageProps) {
-    if (prevProps.searchQuery !== this.props.searchQuery) {
-      this.props.doSearch(this.props.searchQuery);
-    }
+  public componentWillUnmount() {
+    historyManager.removeListener(
+      HISTORY_EVENT.SEARCH_UPDATE,
+      this.onSearchUpdate
+    );
   }
 
   public render() {
@@ -36,10 +42,7 @@ class SearchResultPage extends Component<ISearchResultPageProps> {
           <Link to="/">
             <Logo inline={true} small={true} className={styles.logo} />
           </Link>
-          <SearchInput
-            className={styles.input}
-            initialSearchQuery={this.props.searchQuery}
-          />
+          <SearchInput className={styles.input} />
           <PictureTaker className={styles.pictureTaker} />
         </div>
         {Object.keys(this.props.result).length > 0 ? (
@@ -48,6 +51,12 @@ class SearchResultPage extends Component<ISearchResultPageProps> {
       </div>
     );
   }
+
+  private onSearchUpdate = (search: string | undefined): void => {
+    if (search) {
+      this.props.doSearch(search);
+    }
+  };
 }
 
 const mapStateToProps = (state: AppState) => {

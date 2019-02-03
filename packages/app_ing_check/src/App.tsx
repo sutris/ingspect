@@ -9,7 +9,7 @@ import { Link, Route, Router } from "react-router-dom";
 import "normalize.css";
 import styles from "./App.module.css";
 
-import history from "./history";
+import historyManager from "./history";
 import Logo from "./Logo";
 import OCRProgress from "./OCRProgress";
 import OfflinePage from "./OfflinePage";
@@ -28,7 +28,7 @@ interface IAppProps {
 class App extends Component<IAppProps> {
   public render() {
     return (
-      <Router history={history}>
+      <Router history={historyManager.history}>
         <>
           <nav>
             <Link to="/offline">Offline</Link>
@@ -53,13 +53,7 @@ class App extends Component<IAppProps> {
           <Route
             path="/search"
             // tslint:disable-next-line:jsx-no-lambda
-            render={() => {
-              const currentUrl = new URL(window.location.href);
-              const searchQuery =
-                currentUrl.searchParams.get("search") || undefined;
-
-              return <SearchResultPage searchQuery={searchQuery} />;
-            }}
+            component={SearchResultPage}
           />
           <Route path="/offline" component={OfflinePage} />
         </>
