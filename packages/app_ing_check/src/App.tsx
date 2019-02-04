@@ -9,6 +9,7 @@ import { Link, Route, Router } from "react-router-dom";
 import "normalize.css";
 import styles from "./App.module.css";
 
+import AboutPage from "./AboutPage";
 import historyManager from "./history";
 import Logo from "./Logo";
 import OCRProgress from "./OCRProgress";
@@ -32,6 +33,7 @@ class App extends Component<IAppProps> {
         <>
           <nav>
             <Link to="/offline">Offline</Link>
+            <Link to="/about">About</Link>
           </nav>
           {this.props.progress ? (
             <OCRProgress progress={this.props.progress} />
@@ -56,6 +58,7 @@ class App extends Component<IAppProps> {
             component={SearchResultPage}
           />
           <Route path="/offline" component={OfflinePage} />
+          <Route path="/about" component={AboutPage} />
         </>
       </Router>
     );
