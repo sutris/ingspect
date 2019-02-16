@@ -1,5 +1,5 @@
 {
-  "name": "ing_check",
+  "name": "ingspect-dict",
   "version": "0.0.1",
   "description": "Ingredients checker to identify animal-derived products",
   "main": "index.js",
