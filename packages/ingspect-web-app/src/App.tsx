@@ -1,5 +1,5 @@
 // tslint:disable-next-line:no-reference
-/// <reference path="../definition/ing_check.d.ts"/>
+/// <reference path="../definition/ingspect-lib.d.ts"/>
 
 import { History } from "history";
 import React, { Component } from "react";

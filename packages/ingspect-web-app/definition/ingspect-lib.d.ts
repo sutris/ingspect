@@ -1,4 +1,4 @@
-declare module "ing_check" {
+declare module "ingspect-lib" {
   interface IInfoDetail {
     category: string;
     definition: string;

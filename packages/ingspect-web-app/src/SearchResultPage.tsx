@@ -1,4 +1,4 @@
-import { ICategorizeResult } from "ing_check";
+import { ICategorizeResult } from "ingspect-lib";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";

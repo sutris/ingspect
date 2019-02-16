@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { ICategorizeResult, IIngredientResult } from "ing_check";
+import { ICategorizeResult, IIngredientResult } from "ingspect-lib";
 import React from "react";
 
 import { INGREDIENT_CATEGORY } from "./constant";

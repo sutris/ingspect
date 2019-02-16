@@ -1,4 +1,4 @@
-import ingCheck, { ICategorizeResult } from "ing_check";
+import ingCheck, { ICategorizeResult } from "ingspect-lib";
 import { combineReducers, Reducer } from "redux";
 
 import { ACTION_TYPE, AllAction } from "../actions";
