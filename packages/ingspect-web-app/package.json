@@ -26,9 +26,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "engines": {
-    "node": "^10.13.0"
-  },
   "devDependencies": {
     "@types/classnames": "^2.2.6",
     "@types/jest": "^23.3.9",
