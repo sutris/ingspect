@@ -1,6 +1,6 @@
 {
-  "name": "ingspect",
   "private": true,
+  "name": "ingspect",
   "scripts": {
     "precommit": "lint-staged"
   },
@@ -9,6 +9,7 @@
     "lerna": "^3.13.0",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
+    "prettier-package-json": "^2.1.0",
     "stylelint": "^9.9.0",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-no-unsupported-browser-features": "^3.0.2",
@@ -17,6 +18,9 @@
     "tslint-config-standard": "^8.0.1",
     "tslint-react": "^3.6.0",
     "typescript": "^3.1.6"
+  },
+  "engines": {
+    "node": "^10.13.0"
   },
   "lint-staged": {
     "src/**/*.{scss,css}": [
@@ -28,9 +32,10 @@
       "prettier --write",
       "tslint",
       "git add"
+    ],
+    "**/package.json": [
+      "prettier-package-json --write",
+      "git add"
     ]
-  },
-  "engines": {
-    "node": "^10.13.0"
   }
 }

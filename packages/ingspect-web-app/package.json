@@ -1,7 +1,13 @@
 {
+  "private": true,
   "name": "ingspect-web-app",
   "version": "0.1.0",
-  "private": true,
+  "scripts": {
+    "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
+    "eject": "react-scripts eject",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
+  },
   "dependencies": {
     "classnames": "^2.2.6",
     "ingspect-lib": "^0",
@@ -15,15 +21,6 @@
     "redux-thunk": "^2.3.0",
     "tesseract.js": "^1.0.14"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
   "devDependencies": {
     "@types/classnames": "^2.2.6",
     "@types/jest": "^23.3.9",
@@ -35,5 +32,8 @@
     "@types/redux": "^3.6.0",
     "@types/tesseract.js": "0.0.2",
     "sw-precache": "^5.2.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
   }
 }

@@ -1,26 +1,26 @@
 {
   "name": "ingspect-lib",
-  "version": "0.0.1",
   "description": "Ingredients checker to identify animal-derived products",
+  "license": "ISC",
+  "author": "",
+  "version": "0.0.1",
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc"
   },
-  "keywords": [
-    "sustainability",
-    "environment",
-    "vegan",
-    "vegetarian",
-    "ingredient"
-  ],
-  "author": "",
-  "license": "ISC",
+  "dependencies": {
+    "string-similarity": "^2.0.0"
+  },
   "devDependencies": {
     "@types/string-similarity": "^3.0.0",
     "cheerio": "^1.0.0-rc.2",
     "request": "^2.88.0"
   },
-  "dependencies": {
-    "string-similarity": "^2.0.0"
-  }
+  "keywords": [
+    "environment",
+    "ingredient",
+    "sustainability",
+    "vegan",
+    "vegetarian"
+  ]
 }
