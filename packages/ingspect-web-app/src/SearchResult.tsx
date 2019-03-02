@@ -1,12 +1,12 @@
 import classNames from "classnames";
-import { ICategorizeResult, IIngredientResult } from "ingspect-lib";
+import { CategorizeResult, IngredientResult } from "ingspect-lib";
 import React from "react";
 
 import { INGREDIENT_CATEGORY } from "./constant";
 
 import styles from "./SearchResult.module.css";
 
-const ResultIngredient = (props: IIngredientResult) => {
+const ResultIngredient = (props: IngredientResult) => {
   const { ingQuery, infos, confidence } = props;
 
   if (infos.length > 1) {
@@ -75,7 +75,7 @@ const ResultIngredient = (props: IIngredientResult) => {
 
 interface IResultCategoryProps {
   name: string;
-  ingredients: IIngredientResult[];
+  ingredients: IngredientResult[];
 }
 
 const ResultCategory = (props: IResultCategoryProps) => {
@@ -94,7 +94,7 @@ const ResultCategory = (props: IResultCategoryProps) => {
 };
 
 interface ISearchResultProps {
-  result: ICategorizeResult;
+  result: CategorizeResult;
 }
 
 const ResultStats = (props: ISearchResultProps) => {

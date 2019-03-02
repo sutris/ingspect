@@ -1,0 +1,44 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var StringSimilarity = require("string-similarity");
+var ingDict_1 = require("./data/ingDict");
+exports.ingDict = ingDict_1.default;
+function categorize(ingList, ingDict, option) {
+    var ingNames = Object.keys(ingDict.ingNameToInfoKeys);
+    var result = {};
+    ingList.forEach(function (ing) {
+        var _a = StringSimilarity.findBestMatch(ing, ingNames).bestMatch, target = _a.target, rating = _a.rating;
+        var infoKeys = ingDict.ingNameToInfoKeys[target];
+        var minRating = (option && option.minSimilarity) || 1;
+        var category;
+        var infos = [];
+        if (rating < minRating) {
+            category = ingDict_1.CATEGORY.UNSURE;
+        }
+        else {
+            infos = infoKeys.map(function (infoKey) {
+                var ingInfo = ingDict.infoKeyToInfoDetails[infoKey];
+                var category = ingInfo.category, definition = ingInfo.definition;
+                return {
+                    name: infoKey,
+                    category: category,
+                    definition: definition
+                };
+            });
+            var categoriesArr = infos.map(function (info) { return info.category; });
+            var categoriesSet = new Set(categoriesArr);
+            category = categoriesSet.size === 1 ? categoriesArr[0] : ingDict_1.CATEGORY.UNSURE;
+        }
+        if (result[category] === undefined) {
+            result[category] = [];
+        }
+        result[category].push({
+            ingQuery: ing,
+            confidence: rating,
+            infos: infos
+        });
+    });
+    return result;
+}
+exports.categorize = categorize;
+//# sourceMappingURL=index.js.map

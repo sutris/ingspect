@@ -1,7 +1,3 @@
-// tslint:disable-next-line:no-reference
-/// <reference path="../definition/ingspect-lib.d.ts"/>
-
-import { History } from "history";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link, Route, Router } from "react-router-dom";

@@ -469,4 +469,4 @@ const ingNameToInfoKeys = {
   zein: ["zein"]
 };
 
-module.exports = ingNameToInfoKeys;
+export default ingNameToInfoKeys;

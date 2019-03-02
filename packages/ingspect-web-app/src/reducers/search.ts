@@ -1,13 +1,13 @@
-import ingCheck, { ICategorizeResult } from "ingspect-lib";
+import { categorize, CategorizeResult, ingDict } from "ingspect-lib";
 import { combineReducers, Reducer } from "redux";
 
 import { ACTION_TYPE, AllAction } from "../actions";
 
 export interface ISearchState {
-  searchResult: ICategorizeResult;
+  searchResult: CategorizeResult;
 }
 
-const searchResult: Reducer<ICategorizeResult, AllAction> = (
+const searchResult: Reducer<CategorizeResult, AllAction> = (
   state = {},
   action
 ) => {
@@ -18,11 +18,7 @@ const searchResult: Reducer<ICategorizeResult, AllAction> = (
         .map(ing => ing.trim())
         .filter(str => str.length !== 0);
       const categorizeOption = { minSimilarity: 0.85 };
-      const result = ingCheck.categorize(
-        ingList,
-        ingCheck.ingDict,
-        categorizeOption
-      );
+      const result = categorize(ingList, ingDict, categorizeOption);
 
       return result;
     default:

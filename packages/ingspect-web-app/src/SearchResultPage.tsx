@@ -1,4 +1,4 @@
-import { ICategorizeResult } from "ingspect-lib";
+import { CategorizeResult } from "ingspect-lib";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
@@ -14,7 +14,7 @@ import SearchResult from "./SearchResult";
 import styles from "./SearchResultPage.module.css";
 
 interface ISearchResultPageProps {
-  result: ICategorizeResult;
+  result: CategorizeResult;
   doSearch: (...arg: any) => any;
 }
 
