@@ -12,7 +12,7 @@ interface InfoDetail {
  * An ingredient can have multiple info keys.
  */
 interface IngNameToInfoKeys {
-  [ingName: string]: string[]
+  [ingName: string]: string[];
 }
 
 /**
@@ -20,15 +20,15 @@ interface IngNameToInfoKeys {
  * An info key can only have one info detail.
  */
 interface InfoKeyToInfoDetails {
-  [infoKey: string]: InfoDetail
+  [infoKey: string]: InfoDetail;
 }
 
 /**
  * Dictionary of ingredients
  */
 interface IngredientDictionary {
-  ingNameToInfoKeys: IngNameToInfoKeys // map ingredient names to array of information keys
-  infoKeyToInfoDetails: InfoKeyToInfoDetails // map information key to information details
+  ingNameToInfoKeys: IngNameToInfoKeys; // map ingredient names to array of information keys
+  infoKeyToInfoDetails: InfoKeyToInfoDetails; // map information key to information details
 }
 
 interface CategorizeOption {
@@ -59,8 +59,12 @@ export interface CategorizeResult {
   unsure?: IngredientResult[];
 }
 
-function categorize(ingList: string[], ingDict: IngredientDictionary, option?: CategorizeOption): CategorizeResult {
-  const ingNames = Object.keys(ingDict.ingNameToInfoKeys);
+function categorize(
+  ingList: string[],
+  ingDictionary: IngredientDictionary,
+  option?: CategorizeOption
+): CategorizeResult {
+  const ingNames = Object.keys(ingDictionary.ingNameToInfoKeys);
   const result: CategorizeResult = {};
 
   ingList.forEach(ing => {
@@ -68,7 +72,7 @@ function categorize(ingList: string[], ingDict: IngredientDictionary, option?: C
       bestMatch: { target, rating }
     } = StringSimilarity.findBestMatch(ing, ingNames);
 
-    const infoKeys = ingDict.ingNameToInfoKeys[target];
+    const infoKeys = ingDictionary.ingNameToInfoKeys[target];
     const minRating = (option && option.minSimilarity) || 1;
 
     let category: CATEGORY;
@@ -78,13 +82,13 @@ function categorize(ingList: string[], ingDict: IngredientDictionary, option?: C
       category = CATEGORY.UNSURE;
     } else {
       infos = infoKeys.map(infoKey => {
-        const ingInfo = ingDict.infoKeyToInfoDetails[infoKey];
+        const ingInfo = ingDictionary.infoKeyToInfoDetails[infoKey];
 
-        let { category, definition } = ingInfo;
+        const { category: categ, definition } = ingInfo;
 
         return {
           name: infoKey,
-          category,
+          category: categ,
           definition
         };
       });
@@ -108,7 +112,4 @@ function categorize(ingList: string[], ingDict: IngredientDictionary, option?: C
   return result;
 }
 
-export {
-  categorize,
-  ingDict
-};
+export { categorize, ingDict };

@@ -2,7 +2,8 @@
   "private": true,
   "name": "ingspect",
   "scripts": {
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "lint": "tslint -c tslint.json \"**/*.{tsx,ts}\""
   },
   "devDependencies": {
     "husky": "^1.2.1",
@@ -23,12 +24,12 @@
     "node": "^10.13.0"
   },
   "lint-staged": {
-    "src/**/*.{scss,css}": [
+    "**/*.{scss,css}": [
       "prettier --write",
       "stylelint --config=.stylelintrc --fix",
       "git add"
     ],
-    "src/**/*.{tsx,ts}": [
+    "**/*.{tsx,ts}": [
       "prettier --write",
       "tslint",
       "git add"

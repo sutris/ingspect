@@ -1,5 +1,5 @@
+import infoKeyToInfoDetails, { CATEGORY } from "./infoKeyToInfoDetails";
 import ingNameToInfoKeys from "./ingNameToInfoKeys";
-import infoKeyToInfoDetails, { CATEGORY } from  "./infoKeyToInfoDetails";
 
 export { CATEGORY };
 export default {
