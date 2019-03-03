@@ -3,16 +3,14 @@ import { connect } from "react-redux";
 import { Link, Route, Router } from "react-router-dom";
 
 import "normalize.css";
-import styles from "./App.module.css";
 
 import AboutPage from "./AboutPage";
 import historyManager from "./history";
-import Logo from "./Logo";
+import HomePage from "./HomePage";
 import OCRProgress from "./OCRProgress";
 import OfflinePage from "./OfflinePage";
-import PictureTaker from "./PictureTaker";
 import { AppState } from "./reducers";
-import SearchInput from "./SearchInput";
+
 import SearchResultPage from "./SearchResultPage";
 
 interface IAppProps {
@@ -34,25 +32,8 @@ class App extends Component<IAppProps> {
           {this.props.progress ? (
             <OCRProgress progress={this.props.progress} />
           ) : null}
-          <Route
-            path="/"
-            exact={true}
-            // tslint:disable-next-line:jsx-no-lambda
-            render={() => (
-              <div className={styles.app}>
-                <Logo />
-                <div className={styles.searchContainer}>
-                  <SearchInput className={styles.searchInput} />
-                  <PictureTaker className={styles.pictureTaker} />
-                </div>
-              </div>
-            )}
-          />
-          <Route
-            path="/search"
-            // tslint:disable-next-line:jsx-no-lambda
-            component={SearchResultPage}
-          />
+          <Route path="/" exact={true} component={HomePage} />
+          <Route path="/search" component={SearchResultPage} />
           <Route path="/offline" component={OfflinePage} />
           <Route path="/about" component={AboutPage} />
         </>
