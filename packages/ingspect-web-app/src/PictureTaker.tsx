@@ -13,6 +13,7 @@ interface IPictureTakerState {
 interface IPictureTakerProps {
   className?: string;
   recognizePicture: (...arg: any) => any;
+  showIcon?: boolean;
 }
 
 const CameraIcon = () => {
@@ -36,6 +37,8 @@ class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
   }
 
   public render() {
+    const { showIcon, children } = this.props;
+
     return (
       <>
         <input
@@ -54,7 +57,8 @@ class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
           htmlFor="pictureTaker"
           className={classnames(styles.button, this.props.className)}
         >
-          <CameraIcon />
+          {showIcon ? <CameraIcon /> : null}
+          {children}
         </label>
       </>
     );

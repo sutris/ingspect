@@ -25,10 +25,6 @@ class App extends Component<IAppProps> {
     return (
       <Router history={historyManager.history}>
         <>
-          <nav>
-            <Link to="/offline">Offline</Link>
-            <Link to="/about">About</Link>
-          </nav>
           {this.props.progress ? (
             <OCRProgress progress={this.props.progress} />
           ) : null}

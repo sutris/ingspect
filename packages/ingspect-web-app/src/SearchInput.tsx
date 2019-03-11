@@ -2,11 +2,14 @@ import classNames from "classnames";
 import React, { ChangeEvent, Component } from "react";
 
 import historyManager, { HISTORY_EVENT } from "./history";
+import withSearch, { WithSearchProps } from "./WithSearch";
 
 import styles from "./SearchInput.module.css";
 
-interface ISearchInputProps {
+interface ISearchInputProps extends WithSearchProps {
   className?: string;
+  onChange?: (ele: ChangeEvent<HTMLInputElement>) => void;
+  placeholder?: string;
 }
 
 interface ISearchInputState {
@@ -44,9 +47,7 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
 
   public handleKeyPress = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && this.state.searchText) {
-      historyManager.updateHistory("/search", {
-        search: this.state.searchText
-      });
+      this.props.search(this.state.searchText);
     }
   };
 
@@ -54,17 +55,23 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
     this.setState({
       searchText: ele.target.value
     });
+
+    if (this.props.onChange) {
+      this.props.onChange(ele);
+    }
   };
 
   public render() {
+    const { className, placeholder } = this.props;
+
     return (
       <input
         ref={el => {
           this.searchInput = el;
         }}
-        className={classNames(styles.searchInput, this.props.className)}
+        className={classNames(styles.searchInput, className)}
         type="text"
-        placeholder="Put ingredient list here"
+        placeholder={placeholder ? placeholder : "carrot, sugar, salt, ..."}
         onKeyPress={this.handleKeyPress}
         onChange={this.handleInputChange}
         value={this.state.searchText}
@@ -81,4 +88,4 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
   };
 }
 
-export default SearchInput;
+export default withSearch(SearchInput);
