@@ -27,11 +27,14 @@ class App extends Component<IAppProps> {
         <>
           {this.props.progress ? (
             <OCRProgress progress={this.props.progress} />
-          ) : null}
-          <Route path="/" exact={true} component={HomePage} />
-          <Route path="/search" component={SearchResultPage} />
-          <Route path="/offline" component={OfflinePage} />
-          <Route path="/about" component={AboutPage} />
+          ) : (
+            <>
+              <Route path="/" exact={true} component={HomePage} />
+              <Route path="/search" component={SearchResultPage} />
+              <Route path="/offline" component={OfflinePage} />
+              <Route path="/about" component={AboutPage} />
+            </>
+          )}
         </>
       </Router>
     );

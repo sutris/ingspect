@@ -4,23 +4,69 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: gray;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
-.barContainer {
-  width: 80%;
-  height: 20px;
-  border: solid 1px black;
+.progress {
+  font-size: 24px;
+  font-weight: bold;
 }
 
-.bar {
-  height: 100%;
-  background: red;
-  transition: transform 0.5s linear;
-  transform-origin: 0 0;
-  transform: scaleX(1);
+.status {
+  margin-top: 5px;
+  max-width: 20ch;
+  text-align: center;
+}
+
+.background {
+  position: absolute;
+  z-index: -1;
+}
+
+.circle {
+  border-radius: 50%;
+  position: absolute;
+  animation: a-circle 1s linear infinite;
+}
+
+.circle--1 {
+  width: 300px;
+  height: 300px;
+  background: #f9f9f9;
+  transform-origin: 52% 51%;
+}
+
+.circle--2 {
+  width: 250px;
+  height: 250px;
+  background: #f3f3f3;
+  transform-origin: 51% 52%;
+}
+
+.circle--3 {
+  width: 200px;
+  height: 200px;
+  background: #ededed;
+  transform-origin: 53% 51%;
+}
+
+.circle--4 {
+  width: 150px;
+  height: 150px;
+  background: #e7e7e7;
+  transform-origin: 51% 53%;
+}
+
+@keyframes a-circle {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
 }
