@@ -1,5 +1,5 @@
 @value vars: "./vars.module.css";
-@value page-padding, c-gray, c-dark-gray, c-black, c-teal, c-dark-teal, s-small, s-medium from vars;
+@value page-padding, c-gray, s-small, s-medium from vars;
 
 .app {
   width: 100%;
@@ -13,11 +13,7 @@
 .nav__item {
   position: absolute;
   top: page-padding;
-  color: c-dark-gray;
-}
-
-.nav__item:hover {
-  color: c-black;
+  composes: link from "./shared.module.css";
 }
 
 .nav__offline {
@@ -73,26 +69,12 @@
 }
 
 .button {
-  color: white;
-  font-size: 16px;
-  text-align: center;
-  text-transform: uppercase;
+  composes: button from "./shared.module.css";
   line-height: 45px;
   height: 45px;
   font-weight: bold;
-  background: c-teal;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-  border: none;
-  border-radius: 5px;
   padding: 0;
-  cursor: pointer;
-
-  /* instance specific styling */
   flex: 1 0 0;
-}
-
-.button:hover {
-  background: c-dark-teal;
 }
 
 .button:first-child {

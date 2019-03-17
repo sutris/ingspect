@@ -120,7 +120,11 @@ const ResultStats = (props: ISearchResultProps) => {
     categoryStatsArr[categoryStatsArr.length - 1]
   ].join(" and ");
 
-  return <p>The ingredients are categorized as {categoryStatsStr}.</p>;
+  return (
+    <p className={styles.stats}>
+      The ingredients are categorized as {categoryStatsStr}.
+    </p>
+  );
 };
 
 const SearchResult = (props: ISearchResultProps) => {

@@ -1,23 +1,35 @@
 @value vars: "./vars.module.css";
-@value search-result-page-side-padding from vars;
+@value search-result-page-side-padding, c-light-gray, c-teal from vars;
 
 .header {
-  background: lightgray;
+  background: c-light-gray;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+  background: linear-gradient(90.76deg, #e1e1e1 0.11%, #f3f3f3);
   display: flex;
   align-items: center;
-  padding: 20px search-result-page-side-padding;
-}
-
-.logo {
-  flex-shrink: 0;
+  padding: search-result-page-side-padding;
 }
 
 .input {
-  margin-left: 15px;
-  min-width: 0;
-  max-width: 350px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  border: none;
 }
 
+@value item-padding: 18px;
+
 .pictureTaker {
-  margin-left: 15px;
+  composes: button from "./shared.module.css";
+  margin-left: item-padding;
+  color: white; /* for icon fill color */
+  flex-shrink: 0;
+  box-sizing: border-box;
+  padding: 7px;
+  width: 38px;
+  height: 38px;
+}
+
+.backButton {
+  composes: link from "./shared.module.css";
+  margin-left: item-padding;
 }

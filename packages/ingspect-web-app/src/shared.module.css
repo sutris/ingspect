@@ -1,0 +1,26 @@
+@value vars: "./vars.module.css";
+@value c-dark-gray, c-black, c-teal, c-dark-teal from vars;
+
+.link {
+  color: c-dark-gray;
+}
+
+.link:hover {
+  color: c-black;
+}
+
+.button {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  text-transform: uppercase;
+  background: c-teal;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: c-dark-teal;
+}

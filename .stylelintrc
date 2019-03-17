@@ -7,6 +7,14 @@
         "at-rule-no-unknown": [true, {
             "ignoreAtRules": ["value"]
         }],
+        "property-no-unknown": [
+            true,
+            {
+                "ignoreProperties": [
+                    "composes"
+                ]
+            }
+        ],
         "plugin/no-unsupported-browser-features": [true, {
             "ignore": [
                 "// grid-template-columns and grid-gap is misidentified as multicolumn (https://github.com/anandthakker/doiuse/issues/100)",

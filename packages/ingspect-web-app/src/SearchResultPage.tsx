@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 import { doSearch } from "./actions";
 import historyManager, { HISTORY_EVENT } from "./history";
-import Logo from "./Logo";
 import PictureTaker from "./PictureTaker";
 import { AppState } from "./reducers";
 import SearchInput from "./SearchInput";
@@ -39,11 +38,11 @@ class SearchResultPage extends Component<ISearchResultPageProps> {
     return (
       <div>
         <div className={styles.header}>
-          <Link to="/">
-            <Logo inline={true} small={true} className={styles.logo} />
-          </Link>
           <SearchInput className={styles.input} />
-          <PictureTaker className={styles.pictureTaker} />
+          <PictureTaker className={styles.pictureTaker} showIcon={true} />
+          <Link to="/" className={styles.backButton}>
+            Back
+          </Link>
         </div>
         {Object.keys(this.props.result).length > 0 ? (
           <SearchResult result={this.props.result} />

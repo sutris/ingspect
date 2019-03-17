@@ -1,15 +1,25 @@
 @value vars: "./vars.module.css";
-@value search-result-page-side-padding from vars;
+@value search-result-page-side-padding, c-dark-gray from vars;
 
 .searchResult {
-  padding: 20px search-result-page-side-padding;
+  padding: search-result-page-side-padding;
+}
+
+.stats {
+  font-size: 14px;
+  color: c-dark-gray;
+  margin: 0;
 }
 
 @value category-group-horizontal-padding: 30px;
 @value category-group-vertical-padding: 25px;
 
 .categoryGroup {
-  border: solid 1px lightgray;
+  margin-top: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  overflow: hidden;
+  padding: category-group-vertical-padding category-group-horizontal-padding;
 }
 
 .categoryGroup:not(:last-child) {
@@ -17,60 +27,50 @@
 }
 
 .categoryGroup__name {
-  background: lightgray;
-  padding: category-group-vertical-padding category-group-horizontal-padding;
   margin: 0;
+  font-weight: bold;
+  font-size: 18px;
+  text-transform: capitalize;
 }
 
 @value ing-list-grid-gap: 20px;
 
 .categoryGroup__ingList {
-  padding: category-group-vertical-padding category-group-horizontal-padding;
   list-style: none;
   margin: 0;
-  display: grid;
-  grid-row-gap: ing-list-grid-gap;
-}
-
-@media (min-width: 600px) {
-  .categoryGroup__ingList {
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: ing-list-grid-gap;
-  }
-}
-
-@media (min-width: 950px) {
-  .categoryGroup {
-    display: flex;
-  }
-
-  .categoryGroup__name {
-    flex: 0 0 200px;
-  }
-
-  .categoryGroup__ingList {
-    flex: 1 0 0;
-    grid-template-columns: repeat(auto-fill, minmax(20ch, 1fr));
-  }
+  padding: 0;
+  margin-top: 20px;
 }
 
 @value ingredient-card-horizontal-padding: 10px;
 @value ingredient-card-vertical-padding: 10px;
 
-.ingredient {
-  border: solid 1px lightgray;
+.categoryGroup__ingListItem {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.categoryGroup__ingListItem:not(:last-child) {
+  margin-right: 5px;
 }
 
 .ingredient__name {
-  background: lightgray;
-  padding: ingredient-card-vertical-padding ingredient-card-horizontal-padding;
+  background: c-dark-gray;
   margin: 0;
+  font-size: 14px;
+  color: white;
+  border-radius: 30px;
+  display: inline;
+  padding: 5px 15px;
 }
 
 .ingredient__detail,
 .ingredient__preDetail {
-  padding: 10px ingredient-card-horizontal-padding ingredient-card-vertical-padding;
+  padding:
+    10px ingredient-card-horizontal-padding
+    ingredient-card-vertical-padding;
   margin: 0; /* reset */
+  display: none; /* temporary hide before modal implementation */
 }
 
 .ingredient__detail--empty {
