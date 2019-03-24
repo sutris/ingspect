@@ -109,7 +109,7 @@ const ResultStats = (props: ISearchResultProps) => {
     0
   );
   const categoryPercentages = categoryLengths.map(categoryLength =>
-    ((categoryLength.length * 100) / totalIngredients).toFixed(2)
+    ((categoryLength.length * 100) / totalIngredients).toFixed(0)
   );
 
   const categoryStatsArr = categoryPercentages.map(
