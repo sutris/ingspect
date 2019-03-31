@@ -9,18 +9,38 @@
   color: c-black;
 }
 
-.button {
+.link--accent {
+  color: c-teal;
+}
+
+.link--accent:hover {
+  color: c-dark-teal;
+}
+
+.buttonBase {
   color: white;
   font-size: 16px;
   text-align: center;
-  text-transform: uppercase;
   background: c-teal;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
   border: none;
-  border-radius: 5px;
   cursor: pointer;
 }
 
-.button:hover {
+.buttonBase:hover {
   background: c-dark-teal;
+}
+
+.button {
+  composes: buttonBase;
+  text-transform: uppercase;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.button--full {
+  composes: buttonBase;
+  width: 100%;
+  line-height: 80px;
+  display: inline-block;
+  font-weight: bold;
 }
