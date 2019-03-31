@@ -1,87 +1,61 @@
 import classNames from "classnames";
 import { CategorizeResult, IngredientResult } from "ingspect-lib";
-import React from "react";
+import React, { Component } from "react";
 
 import { INGREDIENT_CATEGORY } from "./constant";
+import Modal from "./Modal";
 
 import styles from "./SearchResult.module.css";
 
-const ResultIngredient = (props: IngredientResult) => {
-  const { ingQuery, infos, confidence } = props;
+interface ExtendedIngResult extends IngredientResult {
+  onClick: showModal;
+  categoryName: INGREDIENT_CATEGORY;
+}
+
+function getIngName(props: IngredientResult): string {
+  const { infos, confidence, ingQuery } = props;
 
   if (infos.length > 1) {
-    const infosElem = infos.map((info, iii) => {
-      const { name, category, definition } = info;
-
-      return (
-        <li key={iii}>
-          <h4 className={styles["ingredient__synonym"]}>
-            {name} ({category})
-          </h4>
-          <p className={styles["ingredient__synonymDetail"]}>{definition}</p>
-        </li>
-      );
-    });
-
-    return (
-      <div className={styles.ingredient}>
-        <h3 className={styles["ingredient__name"]}>{ingQuery}</h3>
-        <p className={styles["ingredient__preDetail"]}>
-          Ingredient may refer to one of the following definition:
-        </p>
-        <ul
-          className={classNames(
-            styles["ingredient__detail"],
-            styles["ingredient__detail--list"]
-          )}
-        >
-          {infosElem}
-        </ul>
-      </div>
-    );
+    return ingQuery;
   } else if (infos.length === 1) {
-    const { name, definition } = infos[0];
+    const { name } = infos[0];
+    const ingName = confidence === 1 ? ingQuery : `${ingQuery} ⇌ ${name}`;
 
-    const ingName =
-      confidence === 1 ? (
-        ingQuery
-      ) : (
-        <>
-          <span>{ingQuery}</span> ⇌ <span>{name}</span>
-        </>
-      );
-    return (
-      <div className={styles.ingredient}>
-        <h3 className={styles["ingredient__name"]}>{ingName}</h3>
-        <p className={styles["ingredient__detail"]}>{definition}</p>
-      </div>
-    );
+    return ingName;
   } else {
-    return (
-      <div className={styles.ingredient}>
-        <h3 className={styles["ingredient__name"]}>{ingQuery}</h3>
-        <p
-          className={classNames(
-            styles["ingredient__detail"],
-            styles["ingredient__detail--empty"]
-          )}
-        >
-          Ingredient not found in database
-        </p>
-      </div>
-    );
+    return ingQuery;
   }
+}
+
+const ResultIngredient = (props: ExtendedIngResult) => {
+  const { categoryName, ingQuery, onClick } = props;
+  const handleClick = () => {
+    onClick(categoryName, ingQuery);
+  };
+
+  return (
+    <div className={styles.ingredient}>
+      <h3 className={styles["ingredientPill"]} onClick={handleClick}>
+        {getIngName(props)}
+      </h3>
+    </div>
+  );
 };
 
 interface IResultCategoryProps {
-  name: string;
+  name: INGREDIENT_CATEGORY;
   ingredients: IngredientResult[];
+  onIngClick: showModal;
 }
 
 const ResultCategory = (props: IResultCategoryProps) => {
   const ingredients = props.ingredients.map((ingredient, index) => (
     <li className={styles["categoryGroup__ingListItem"]} key={index}>
-      <ResultIngredient {...ingredient} />
+      <ResultIngredient
+        {...ingredient}
+        onClick={props.onIngClick}
+        categoryName={props.name}
+      />
     </li>
   ));
 
@@ -127,35 +101,142 @@ const ResultStats = (props: ISearchResultProps) => {
   );
 };
 
-const SearchResult = (props: ISearchResultProps) => {
-  const categories = Object.keys(props.result).sort(
-    (a, b) =>
-      props.result[b as INGREDIENT_CATEGORY]!.length -
-      props.result[a as INGREDIENT_CATEGORY]!.length
-  );
+type showModal = (category: INGREDIENT_CATEGORY, ingQuery: string) => void;
 
-  const result = categories.map((categoryName, index) => {
-    const categoryDetail = props.result[categoryName as INGREDIENT_CATEGORY];
+interface SearchResultState {
+  modalData?: {
+    category: INGREDIENT_CATEGORY;
+    ingQuery: string;
+  };
+}
 
-    if (categoryDetail) {
-      return (
-        <ResultCategory
-          name={categoryName}
-          ingredients={categoryDetail}
-          key={index}
-        />
+class SearchResult extends Component<ISearchResultProps, SearchResultState> {
+  constructor(props: ISearchResultProps) {
+    super(props);
+
+    this.state = {
+      modalData: undefined
+    };
+
+    this.renderModal = this.renderModal.bind(this);
+    this.showModal = this.showModal.bind(this);
+  }
+
+  public render() {
+    const { result } = this.props;
+
+    const categories = (Object.keys(result) as INGREDIENT_CATEGORY[]).sort(
+      (a, b) => result[b]!.length - result[a]!.length
+    );
+
+    const sortedResult = categories.map((categoryName, index) => {
+      const categoryDetail = result[categoryName];
+
+      if (categoryDetail) {
+        return (
+          <ResultCategory
+            name={categoryName}
+            ingredients={categoryDetail}
+            key={index}
+            onIngClick={this.showModal}
+          />
+        );
+      } else {
+        return null;
+      }
+    });
+
+    return (
+      <div className={styles.searchResult}>
+        <ResultStats result={result} />
+        {sortedResult}
+        {this.renderModal()}
+      </div>
+    );
+  }
+
+  private renderModal() {
+    if (this.state.modalData === undefined) return null;
+
+    const { result } = this.props;
+    const { category, ingQuery } = this.state.modalData;
+    const toBeShown = result[category]!.find(el => el.ingQuery === ingQuery);
+
+    if (!toBeShown) return null;
+
+    const { infos } = toBeShown;
+    let ingDetail;
+
+    if (infos.length > 1) {
+      const infosElem = infos.map((info, iii) => {
+        const { name, category: synonymCategory, definition } = info;
+
+        return (
+          <li key={iii}>
+            <h4 className={styles["ingredient__synonym"]}>
+              {name} ({synonymCategory})
+            </h4>
+            <p className={styles["ingredient__synonymDetail"]}>{definition}</p>
+          </li>
+        );
+      });
+
+      ingDetail = (
+        <>
+          <p className={styles["ingredient__preDetail"]}>
+            Ingredient may refer to one of the following definition:
+          </p>
+          <ul
+            className={classNames(
+              styles["ingredient__detail"],
+              styles["ingredient__detail--list"]
+            )}
+          >
+            {infosElem}
+          </ul>
+        </>
       );
-    } else {
-      return null;
-    }
-  });
+    } else if (infos.length === 1) {
+      const { definition } = infos[0];
 
-  return (
-    <div className={styles.searchResult}>
-      <ResultStats result={props.result} />
-      {result}
-    </div>
-  );
-};
+      ingDetail = <p className={styles["ingredient__detail"]}>{definition}</p>;
+    } else {
+      ingDetail = (
+        <p
+          className={classNames(
+            styles["ingredient__detail"],
+            styles["ingredient__detail--empty"]
+          )}
+        >
+          Ingredient not found in database
+        </p>
+      );
+    }
+
+    const onDismissed = () => {
+      this.setState({ modalData: undefined });
+    };
+
+    return (
+      <Modal onDismissed={onDismissed}>
+        <div className={styles.ingredient}>
+          <h3 className={styles["ingredient__name"]}>
+            {getIngName(toBeShown)} <span>{category}</span>
+          </h3>
+          {ingDetail}
+        </div>
+      </Modal>
+    );
+  }
+
+  private showModal: showModal = (category, ingQuery) => {
+    this.setState({
+      modalData: {
+        category,
+        ingQuery
+      }
+    });
+  };
+}
 
 export default SearchResult;

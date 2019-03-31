@@ -1,0 +1,43 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@value modalPadding: 20px;
+
+.modal {
+  padding: modalPadding;
+  background: white;
+  border-radius: 5px;
+  width: 85%;
+  position: relative;
+}
+
+.closeButton {
+  position: absolute;
+  top: modalPadding;
+  right: modalPadding;
+  background: white;
+  border: solid 1px gray;
+  border-radius: 50%;
+  font-size: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+.closeButton::before {
+  content: "✕";
+  width: 40px;
+  line-height: 40px;
+  height: 40px;
+  font-weight: bold;
+  font-size: 18px;
+  display: inline-block;
+}
