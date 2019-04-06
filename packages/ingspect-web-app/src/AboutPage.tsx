@@ -13,7 +13,7 @@ function AboutPage() {
         </Link>
         <h2 className={sharedStyles.heading}>IngCheck</h2>
         <p className={sharedStyles.paragraph}>
-          IngCheck is a web application for categorizing a list of ingredients
+          IngSpect is a web application for categorizing a list of ingredients
           based on its source. There are 9 categories in total:
         </p>
         <ul className={styles.categList}>
