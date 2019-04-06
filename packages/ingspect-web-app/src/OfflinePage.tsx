@@ -1,4 +1,9 @@
+import classnames from "classnames";
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
+import styles from "./OfflinePage.module.css";
+import sharedStyles from "./shared.module.css";
 
 interface IOfflinePageState {
   isPWASupported: boolean;
@@ -31,32 +36,47 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
     const isThereThingsToBeCached = this.state.urlsNotCached.length > 0;
 
     return (
-      <div>
-        {this.state.isPWASupported ? (
-          <>
-            <p>
-              Your browser support Progressive Web App (PWA). It means that you
-              can make IngCheck's ingredient search functionality continue to
-              work even if you have no internet connection. In addition, you can
-              make the IngCheck's image text recognition available in offline
-              mode.
-            </p>
-            <button
-              disabled={!isThereThingsToBeCached}
-              onClick={this.fetchUncachedUrls}
-            >
-              {isThereThingsToBeCached
-                ? "Download image text recognition feature"
-                : "Image text recognition is available for offline"}
-            </button>
-          </>
-        ) : (
+      <div className={styles.container}>
+        <div className={sharedStyles.page}>
+          <Link to="/" className={sharedStyles["backButton--top"]}>
+            Back
+          </Link>
+          <h2 className={sharedStyles.heading}>Offline</h2>
           <p>
-            Your browser does not support Progressive Web App (PWA). If you want
-            full offline usage, please use an up-to-date version of Chrome or
-            Firefox.
+            IngSpect can be available in offline. That means, you don’t need
+            network connection to access IngSpect!
           </p>
-        )}
+          {this.state.isPWASupported ? (
+            <>
+              <p>
+                And your browser do support this capability! 🎉 It means that
+                you can make IngSpect’s ingredient search functionality continue
+                to work even if you have no internet connection. In addition,
+                you can make the IngSpect's image text recognition available in
+                offline mode.
+              </p>
+              <button
+                disabled={!isThereThingsToBeCached}
+                onClick={this.fetchUncachedUrls}
+                className={classnames(
+                  sharedStyles.button,
+                  styles.downloadButton
+                )}
+              >
+                {isThereThingsToBeCached ? "Download" : "Downloaded"}
+              </button>
+            </>
+          ) : (
+            <p>
+              Unfortunately, your browser does not support this capability. If
+              you want full offline usage, please use an up-to-date version of
+              Chrome or Firefox.
+            </p>
+          )}
+        </div>
+        <Link to="/" className={styles["backButton--bottom"]}>
+          Back to Home
+        </Link>
       </div>
     );
   }

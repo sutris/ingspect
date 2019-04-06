@@ -1,47 +1,7 @@
-@value page-padding: 40px;
-
-.page {
-  padding: page-padding;
-  line-height: 1.5;
-  max-width: 50ch;
-  margin: 0 auto;
-  position: relative;
-}
-
-.heading {
-  margin: 20px 0 5px;
-}
-
-.heading:first-of-type {
-  margin-top: 0;
-}
-
-.paragraph {
-  margin-top: 0;
-}
-
 .categList {
   padding: 0 0 0 35px;
 }
 
 .categList__itemName {
   font-weight: bold;
-}
-
-.backButton--top {
-  composes: link--accent from "./shared.module.css";
-  position: absolute;
-  /* stylelint-disable-next-line function-calc-no-unspaced-operator */
-  top: calc(page-padding + 5px);
-  right: page-padding;
-}
-
-.backButton--bottom {
-  composes: button--full from "./shared.module.css";
-}
-
-@media (min-width: 750px) {
-  .backButton--bottom {
-    display: none;
-  }
 }

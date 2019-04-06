@@ -2,16 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./AboutPage.module.css";
+import sharedStyles from "./shared.module.css";
 
 function AboutPage() {
   return (
     <>
-      <div className={styles.page}>
-        <Link to="/" className={styles["backButton--top"]}>
+      <div className={sharedStyles.page}>
+        <Link to="/" className={sharedStyles["backButton--top"]}>
           Back
         </Link>
-        <h2 className={styles.heading}>IngCheck</h2>
-        <p className={styles.paragraph}>
+        <h2 className={sharedStyles.heading}>IngCheck</h2>
+        <p className={sharedStyles.paragraph}>
           IngCheck is a web application for categorizing a list of ingredients
           based on its source. There are 9 categories in total:
         </p>
@@ -67,8 +68,8 @@ function AboutPage() {
           vegetarian, typically vegan, typically non-vegetarian, or may be
           non-vegetarian.
         </p>
-        <h2 className={styles.heading}>Copyright</h2>
-        <p className={styles.paragraph}>
+        <h2 className={sharedStyles.heading}>Copyright</h2>
+        <p className={sharedStyles.paragraph}>
           All ingredients information is retrieved from the Vegetarian Resource
           Group (
           <a
@@ -80,15 +81,15 @@ function AboutPage() {
           </a>
           )
         </p>
-        <h2 className={styles.heading}>Feedbacks</h2>
-        <p className={styles.paragraph}>
+        <h2 className={sharedStyles.heading}>Feedbacks</h2>
+        <p className={sharedStyles.paragraph}>
           Feel free to submit feedback or issues to{" "}
           <a href="mailto:sutris.sdp@protonmail.com">
             sutris.sdp@protonmail.com
           </a>
         </p>
       </div>
-      <Link to="/" className={styles["backButton--bottom"]}>
+      <Link to="/" className={sharedStyles["backButton--bottom"]}>
         Back to Home
       </Link>
     </>
