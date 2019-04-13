@@ -3,7 +3,7 @@
   "name": "ingspect-web-app",
   "version": "0.1.0",
   "scripts": {
-    "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
+    "build": "react-scripts build && workbox generateSW workbox-config.js",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "test": "react-scripts test"
@@ -31,7 +31,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/redux": "^3.6.0",
     "@types/tesseract.js": "0.0.2",
-    "sw-precache": "^5.2.1"
+    "workbox-cli": "^4.2.0"
   },
   "eslintConfig": {
     "extends": "react-app"
