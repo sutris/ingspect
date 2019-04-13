@@ -3,7 +3,8 @@ module.exports = {
   globPatterns: [
     "build/index.html",
     "build/static/css/**.css",
-    "build/static/js/**.js"
+    "build/static/js/**.js",
+    "build/static/media/**.svg"
   ],
   swDest: "./build/service-worker.js",
   modifyURLPrefix: {
