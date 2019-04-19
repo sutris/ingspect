@@ -87,12 +87,16 @@ const ResultStats = (props: ISearchResultProps) => {
   );
 
   const categoryStatsArr = categoryPercentages.map(
-    (percentage, index) => `${percentage}% ${categoryLengths[index].name}`
+    (percentage, index) =>
+      `${percentage}% ${categoryLengths[index].name.toLowerCase()}`
   );
+
   const categoryStatsStr = [
     categoryStatsArr.slice(0, -1).join(", "),
     categoryStatsArr[categoryStatsArr.length - 1]
-  ].join(" and ");
+  ]
+    .filter(str => str !== "")
+    .join(" and ");
 
   return (
     <p className={styles.stats}>
