@@ -94,3 +94,23 @@
   z-index: -1;
   width: 100%;
 }
+
+/* In portrait mode and height is too small (e.g. when mobile keyboard is visible */
+@media screen and (orientation: landscape) and (max-height: 400px) {
+  .nav__item,
+  .main__title,
+  .main__subtitle,
+  .buttons_container {
+    display: none;
+  }
+
+  .searchInput {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0;
+    padding: 15px;
+  }
+}
