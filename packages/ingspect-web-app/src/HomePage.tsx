@@ -41,8 +41,7 @@ const HomePage = (props: WithSearchProps) => {
       <div className={styles.main}>
         <h1 className={styles.main__title}>IngSpect</h1>
         <p className={styles.main__subtitle}>
-          Inpect a list of ingredients by copy pasting the ingredient list or
-          taking a picture
+          Categorize a list of ingredients by their source
         </p>
         <SearchInput
           className={styles.searchInput}
