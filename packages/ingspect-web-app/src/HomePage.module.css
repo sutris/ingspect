@@ -1,5 +1,5 @@
 @value vars: "./vars.module.css";
-@value page-padding, c-gray, s-small, s-medium from vars;
+@value page-padding, c-gray, c-darker-gray, s-small, s-medium from vars;
 
 .app {
   width: 100%;
@@ -45,7 +45,7 @@
 .main__subtitle {
   margin: 0;
   margin-bottom: s-medium;
-  color: c-gray;
+  color: c-darker-gray;
   text-align: center;
   padding: 0 main-hor-padding;
 }

@@ -1,8 +1,8 @@
 @value vars: "./vars.module.css";
-@value c-dark-gray, c-black, c-teal, c-dark-teal, page-padding from vars;
+@value c-darker-gray, c-black, c-teal, c-dark-teal, page-padding from vars;
 
 .link {
-  color: c-dark-gray;
+  color: c-darker-gray;
 }
 
 .link:hover {
