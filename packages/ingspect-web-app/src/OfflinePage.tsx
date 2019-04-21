@@ -8,6 +8,7 @@ import sharedStyles from "./shared.module.css";
 interface IOfflinePageState {
   isPWASupported: boolean;
   urlsNotCached: string[];
+  downloading: boolean;
 }
 
 class OfflinePage extends Component<{}, IOfflinePageState> {
@@ -26,7 +27,8 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
 
     this.state = {
       isPWASupported: isServiceWorkerSupported && isCacheSupported,
-      urlsNotCached: []
+      urlsNotCached: [],
+      downloading: false
     };
 
     this.checkIsOCRCached();
@@ -66,6 +68,18 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
                 {isThereThingsToBeCached
                   ? "Download for offline"
                   : "IngSpect can be used offline"}
+                {this.state.downloading ? (
+                  <div className={styles["lds-roller"]} aria-hidden="true">
+                    <div aria-hidden="true" />
+                    <div aria-hidden="true" />
+                    <div aria-hidden="true" />
+                    <div aria-hidden="true" />
+                    <div aria-hidden="true" />
+                    <div aria-hidden="true" />
+                    <div aria-hidden="true" />
+                    <div aria-hidden="true" />
+                  </div>
+                ) : null}
               </button>
             </>
           ) : (
@@ -85,7 +99,12 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
   private fetchUncachedUrls = async () => {
     const cache = await caches.open(this.cacheName);
 
+    this.setState({ downloading: true });
+
     await cache.addAll(this.state.urlsNotCached);
+
+    this.setState({ downloading: false });
+
     this.checkIsOCRCached();
   };
 
