@@ -63,7 +63,9 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
                   styles.downloadButton
                 )}
               >
-                {isThereThingsToBeCached ? "Download" : "Downloaded"}
+                {isThereThingsToBeCached
+                  ? "Download for offline"
+                  : "IngSpect can be used offline"}
               </button>
             </>
           ) : (
