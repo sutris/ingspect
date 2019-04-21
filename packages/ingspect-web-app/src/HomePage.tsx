@@ -41,7 +41,8 @@ const HomePage = (props: WithSearchProps) => {
       <div className={styles.main}>
         <h1 className={styles.main__title}>IngSpect</h1>
         <p className={styles.main__subtitle}>
-          Categorize a list of ingredients by their source
+          Categorize a list of ingredients by their source. Separate the
+          ingredients with comma.
         </p>
         <SearchInput
           className={styles.searchInput}

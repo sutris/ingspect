@@ -82,3 +82,11 @@
     display: none;
   }
 }
+
+/* Search result page */
+
+.row {
+  max-width: 750px;
+  margin: auto;
+  padding: 30px;
+}

@@ -1,8 +1,8 @@
 @value vars: "./vars.module.css";
-@value search-result-page-side-padding, c-dark-gray from vars;
+@value c-dark-gray from vars;
 
 .searchResult {
-  padding: search-result-page-side-padding;
+  composes: row from "./shared.module.css";
 }
 
 .stats {

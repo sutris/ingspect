@@ -1,13 +1,16 @@
 @value vars: "./vars.module.css";
-@value search-result-page-side-padding, c-light-gray, c-teal from vars;
+@value c-light-gray, c-teal from vars;
 
 .header {
   background: c-light-gray;
   /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   background: linear-gradient(90.76deg, #e1e1e1 0.11%, #f3f3f3);
+}
+
+.widthConstrainer {
+  composes: row from "./shared.module.css";
   display: flex;
   align-items: center;
-  padding: search-result-page-side-padding;
 }
 
 .input {

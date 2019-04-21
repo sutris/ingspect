@@ -38,11 +38,13 @@ class SearchResultPage extends Component<ISearchResultPageProps> {
     return (
       <div>
         <div className={styles.header}>
-          <SearchInput className={styles.input} />
-          <PictureTaker className={styles.pictureTaker} showIcon={true} />
-          <Link to="/" className={styles.backButton}>
-            Back
-          </Link>
+          <div className={styles.widthConstrainer}>
+            <SearchInput className={styles.input} />
+            <PictureTaker className={styles.pictureTaker} showIcon={true} />
+            <Link to="/" className={styles.backButton}>
+              Back
+            </Link>
+          </div>
         </div>
         {Object.keys(this.props.result).length > 0 ? (
           <SearchResult result={this.props.result} />
