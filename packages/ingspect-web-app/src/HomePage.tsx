@@ -13,6 +13,8 @@ const HomePage = (props: WithSearchProps) => {
   let searchInputValue: string;
 
   const handleIngspectClick = () => {
+    if (!searchInputValue) return;
+
     search(searchInputValue);
   };
 
