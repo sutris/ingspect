@@ -1,6 +1,14 @@
 import { EventEmitter } from "events";
 import Tesseract from "tesseract.js";
 
+declare global {
+  namespace Tesseract {
+    interface TesseractStatic {
+      terminate(): void;
+    }
+  }
+}
+
 enum EVENTS {
   RECOGNIZE_PROGRESS = "recognize:progress",
   RECOGNIZE_RESULT = "recognize:result"
@@ -33,6 +41,10 @@ class OCRManager extends EventEmitter {
 
       this.emit(EVENTS.RECOGNIZE_RESULT, text);
     });
+  }
+
+  public cancelCurrentJob() {
+    this.recognizer.terminate();
   }
 }
 
