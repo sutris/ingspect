@@ -83,9 +83,13 @@ function AboutPage() {
         </p>
         <h2 className={sharedStyles.heading}>Feedbacks</h2>
         <p className={sharedStyles.paragraph}>
-          Feel free to submit feedback or issues to{" "}
-          <a href="mailto:sutris.sdp@protonmail.com">
-            sutris.sdp@protonmail.com
+          We would love to hear your feedback! Share them to{" "}
+          <a
+            href="https://twitter.com/ingspectapp"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            @ingspectapp
           </a>
         </p>
       </div>
