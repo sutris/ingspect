@@ -1,4 +1,5 @@
-import { categorize, CategorizeResult, ingDict } from "ingspect-lib";
+import ingData from "ingspect-dict";
+import { categorize, CategorizeResult } from "ingspect-lib";
 import { combineReducers, Reducer } from "redux";
 
 import { ACTION_TYPE, AllAction } from "../actions";
@@ -18,7 +19,7 @@ const searchResult: Reducer<CategorizeResult, AllAction> = (
         .map(ing => ing.trim())
         .filter(str => str.length !== 0);
       const categorizeOption = { minSimilarity: 0.85 };
-      const result = categorize(ingList, ingDict, categorizeOption);
+      const result = categorize(ingList, ingData, categorizeOption);
 
       return result;
     default:

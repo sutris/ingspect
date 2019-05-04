@@ -1,14 +1,14 @@
 export enum CATEGORY {
-  "TYPICALLY_VEGETARIAN" =  "Typically Vegetarian",
-  "TYPICALLY_VEGAN" =  "Typically Vegan",
-  "TYPICALLY_NON_VEGETARIAN" =  "Typically Non-Vegetarian",
-  "MAY_BE_NON_VEGETARIAN" =  "May be Non-Vegetarian",
-  "NON_VEGETARIAN" =  "Non-Vegetarian",
-  "VEGAN" =  "Vegan",
-  "VEGETARIAN" =  "Vegetarian",
-  "UNSPECIFIED" =  "unspecified",
-  "UNSURE" =  "unsure",
-};
+  "TYPICALLY_VEGETARIAN" = "Typically Vegetarian",
+  "TYPICALLY_VEGAN" = "Typically Vegan",
+  "TYPICALLY_NON_VEGETARIAN" = "Typically Non-Vegetarian",
+  "MAY_BE_NON_VEGETARIAN" = "May be Non-Vegetarian",
+  "NON_VEGETARIAN" = "Non-Vegetarian",
+  "VEGAN" = "Vegan",
+  "VEGETARIAN" = "Vegetarian",
+  "UNSPECIFIED" = "unspecified",
+  "UNSURE" = "unsure"
+}
 
 const infoKeyToInfoDetails = {
   "acesulfame K": {

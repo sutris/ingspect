@@ -1,6 +1,6 @@
 {
-  "name": "ingspect-lib",
-  "description": "Utility library that help IngSpect categorize ingredients by their source.",
+  "name": "ingspect-dict",
+  "description": "Ingredients data/dictionary that empowers IngSpect to categorize ingredients by their source.",
   "license": "ISC",
   "author": "",
   "version": "0.0.1",
@@ -8,12 +8,9 @@
   "scripts": {
     "build": "../../node_modules/.bin/tsc"
   },
-  "dependencies": {
-    "ingspect-dict": "^0",
-    "string-similarity": "^2.0.0"
-  },
   "devDependencies": {
-    "@types/string-similarity": "^3.0.0"
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.88.0"
   },
   "keywords": [
     "environment",

@@ -1,4 +1,4 @@
-import ingDict, { CATEGORY } from "./data/ingDict";
+import { CATEGORY } from "ingspect-dict";
 interface InfoDetail {
   category: CATEGORY;
   definition: string;
@@ -42,5 +42,5 @@ declare function categorize(
   ingDictionary: IngredientDictionary,
   option?: CategorizeOption
 ): CategorizeResult;
-export { categorize, ingDict };
+export { categorize };
 //# sourceMappingURL=index.d.ts.map

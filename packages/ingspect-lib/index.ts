@@ -1,6 +1,6 @@
 import * as StringSimilarity from "string-similarity";
 
-import ingDict, { CATEGORY } from "./data/ingDict";
+import { CATEGORY } from "ingspect-dict";
 
 interface InfoDetail {
   category: CATEGORY; // ingredient category (i.e. vegan, vegetarian, typically vegan, etc.)
@@ -112,4 +112,4 @@ function categorize(
   return result;
 }
 
-export { categorize, ingDict };
+export { categorize };
