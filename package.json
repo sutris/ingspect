@@ -4,10 +4,13 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "precommit": "lint-staged",
-    "lint": "tslint -c tslint.json \"**/*.{tsx,ts}\""
+    "lint": "tslint -c tslint.json \"**/*.{tsx,ts}\"",
+    "test": "jest --config=./jest.config.js --coverage"
   },
   "devDependencies": {
+    "@types/jest": "^24.0.12",
     "husky": "^1.2.1",
+    "jest": "^24.8.0",
     "lerna": "^3.13.0",
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
@@ -15,6 +18,7 @@
     "stylelint": "^9.9.0",
     "stylelint-config-standard": "^18.2.0",
     "stylelint-no-unsupported-browser-features": "^3.0.2",
+    "ts-jest": "^24.0.2",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
     "tslint-config-standard": "^8.0.1",
