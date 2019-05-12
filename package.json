@@ -5,7 +5,7 @@
     "bootstrap": "lerna bootstrap",
     "precommit": "lint-staged",
     "lint": "tslint -c tslint.json \"**/*.{tsx,ts}\"",
-    "test": "jest --config=./jest.config.js --coverage"
+    "test": "ls packages | xargs -I % sh -c 'cd ./packages/%; npm test"
   },
   "devDependencies": {
     "@types/jest": "^24.0.12",
