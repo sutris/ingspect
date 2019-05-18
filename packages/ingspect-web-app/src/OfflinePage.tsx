@@ -109,6 +109,8 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
   };
 
   private checkIsOCRCached = async () => {
+    if (!this.state.isPWASupported) return;
+
     const cache = await caches.open(this.cacheName);
     const cachedRequests = await cache.keys();
     const cachedURLs = cachedRequests.map(request => request.url);

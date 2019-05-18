@@ -51,7 +51,11 @@ const HomePage = (props: WithSearchProps) => {
           onChange={handleSearchInputChange}
         />
         <div className={styles.buttons_container}>
-          <button className={styles.button} onClick={handleIngspectClick}>
+          <button
+            className={styles.button}
+            onClick={handleIngspectClick}
+            data-testid="ingspect-button"
+          >
             IngSpect
           </button>
           <PictureTaker className={styles.button}>Photo</PictureTaker>

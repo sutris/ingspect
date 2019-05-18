@@ -56,6 +56,7 @@ class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
         <label
           htmlFor="pictureTaker"
           className={classnames(styles.button, this.props.className)}
+          data-testid="picture-taker"
         >
           {showIcon ? <CameraIcon /> : null}
           {children}

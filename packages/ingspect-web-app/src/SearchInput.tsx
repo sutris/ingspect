@@ -75,6 +75,7 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
         onKeyPress={this.handleKeyPress}
         onChange={this.handleInputChange}
         value={this.state.searchText}
+        data-testid="search-input"
       />
     );
   }
