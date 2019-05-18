@@ -1,11 +1,12 @@
+import { History, Location } from "history";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, Route, Router } from "react-router-dom";
+import { match, withRouter } from "react-router";
+import { Route } from "react-router-dom";
 
 import "normalize.css";
 
 import AboutPage from "./AboutPage";
-import historyManager from "./history";
 import HomePage from "./HomePage";
 import OCRProgress from "./OCRProgress";
 import OfflinePage from "./OfflinePage";
@@ -18,25 +19,28 @@ interface IAppProps {
     status: string;
     progress: number;
   } | null;
+
+  // withRouter porps
+  history: History;
+  location: Location;
+  match: match;
 }
 
 class App extends Component<IAppProps> {
   public render() {
     return (
-      <Router history={historyManager.history}>
-        <>
-          {this.props.progress ? (
-            <OCRProgress progress={this.props.progress} />
-          ) : (
-            <>
-              <Route path="/" exact={true} component={HomePage} />
-              <Route path="/search" component={SearchResultPage} />
-              <Route path="/offline" component={OfflinePage} />
-              <Route path="/about" component={AboutPage} />
-            </>
-          )}
-        </>
-      </Router>
+      <>
+        {this.props.progress ? (
+          <OCRProgress progress={this.props.progress} />
+        ) : (
+          <>
+            <Route path="/" exact={true} component={HomePage} />
+            <Route path="/search" component={SearchResultPage} />
+            <Route path="/offline" component={OfflinePage} />
+            <Route path="/about" component={AboutPage} />
+          </>
+        )}
+      </>
     );
   }
 }
@@ -47,4 +51,7 @@ const mapStateToProps = (state: AppState) => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+// withRouter is necessary to make the App component re-render
+// when the parent Router update the history.
+// Related issue: https://github.com/ReactTraining/react-router/issues/4671
+export default withRouter(connect(mapStateToProps)(App));

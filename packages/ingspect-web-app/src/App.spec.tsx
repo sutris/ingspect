@@ -1,17 +1,11 @@
 import React from "react";
-import { Provider } from "react-redux";
-import { render } from "react-testing-library";
 
 import App from "./App";
-import store from "./store";
+import { renderWithAppContext } from "./test/utils";
 
 describe(App, () => {
   it("should display home page by default", () => {
-    const { getByText } = render(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
+    const { getByText } = renderWithAppContext(<App />);
 
     expect(
       getByText(
