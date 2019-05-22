@@ -28,9 +28,7 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
   }
 
   public componentDidMount() {
-    if (this.searchInput) {
-      this.searchInput.focus();
-    }
+    this.searchInput && this.searchInput.focus();
 
     historyManager.addListener(
       HISTORY_EVENT.SEARCH_UPDATE,
@@ -46,8 +44,11 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
   }
 
   public handleKeyPress = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter" && this.state.searchText) {
-      this.props.search(this.state.searchText);
+    const sanitizedSearchText =
+      this.state.searchText && this.state.searchText.trim();
+
+    if (event.key === "Enter" && sanitizedSearchText) {
+      this.props.search(sanitizedSearchText);
     }
   };
 
