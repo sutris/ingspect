@@ -141,14 +141,16 @@ describe("Offline Page", () => {
       it("should cache uncached assets when download button is clicked", async () => {
         jest.useFakeTimers();
 
-        const { findByText, findByTestId } = renderHistoryPage();
+        const { findByText } = renderHistoryPage();
 
+        // let cache checking finish
         await runPendingPromiseJob(2);
 
         const downloadButton = await findByText("Download for offline");
 
         fireEvent.click(downloadButton);
 
+        // let cache checking and fetching finish
         await runPendingPromiseJob(1);
 
         expect(mockAddAll).toBeCalledTimes(1);
@@ -159,5 +161,17 @@ describe("Offline Page", () => {
         ]);
       });
     });
+  });
+
+  it("should render a button for going back to home page", () => {
+    const { getByText, history } = renderHistoryPage();
+
+    const backButton = getByText("Back");
+
+    expect(backButton).toBeInTheDocument();
+
+    fireEvent.click(backButton);
+
+    expect(history.location.pathname).toEqual("/");
   });
 });
