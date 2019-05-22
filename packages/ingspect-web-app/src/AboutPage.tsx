@@ -11,7 +11,7 @@ function AboutPage() {
         <Link to="/" className={sharedStyles["backButton--top"]}>
           Back
         </Link>
-        <h2 className={sharedStyles.heading}>IngCheck</h2>
+        <h2 className={sharedStyles.heading}>IngSpect</h2>
         <p className={sharedStyles.paragraph}>
           IngSpect is a web application for categorizing a list of ingredients
           based on its source. There are 9 categories in total:
