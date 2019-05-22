@@ -30,13 +30,13 @@ describe("Home Page", () => {
   it("should do nothing when the ingspect button is pressed and the search input is empty", () => {
     const { getByTestId, history } = renderWithAppContext(<App />);
     const searchInput = getByTestId("search-input") as HTMLInputElement;
-    fireEvent.change(searchInput, { target: { value: "" } });
+    fireEvent.change(searchInput, { target: { value: "  " } });
     fireEvent.click(getByTestId("ingspect-button"));
 
     expect(history.location.pathname).toEqual("/");
   });
 
-  it("should do nothing when the ingspect button is pressed and the search input is empty", () => {
+  it("should navigate to search result page when the ingspect button is pressed and the search input is not empty", () => {
     const { getByTestId, history } = renderWithAppContext(<App />);
     const searchInput = getByTestId("search-input") as HTMLInputElement;
     fireEvent.change(searchInput, { target: { value: "value" } });

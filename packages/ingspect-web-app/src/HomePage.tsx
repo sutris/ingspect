@@ -21,7 +21,7 @@ const HomePage = (props: WithSearchProps) => {
   const handleSearchInputChange = (
     ele: ChangeEvent<HTMLInputElement>
   ): void => {
-    searchInputValue = ele.target.value;
+    searchInputValue = ele.target.value.trim();
   };
 
   return (
