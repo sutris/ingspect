@@ -52,6 +52,7 @@ class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onChange={this.onChange}
+          data-testid="picture-taker-input"
         />
         <label
           htmlFor="pictureTaker"
