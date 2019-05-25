@@ -30,7 +30,7 @@ class Modal extends PureComponent<ModalProps> {
     const { children, onDismissed } = this.props;
 
     return (
-      <div className={styles.backdrop}>
+      <div className={styles.backdrop} data-testid="modal">
         <div className={styles.modal} ref={this.modal}>
           <button className={styles.closeButton} onClick={onDismissed}>
             close

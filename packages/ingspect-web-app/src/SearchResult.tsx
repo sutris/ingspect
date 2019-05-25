@@ -134,20 +134,16 @@ class SearchResult extends Component<ISearchResultProps, SearchResultState> {
     );
 
     const sortedResult = categories.map((categoryName, index) => {
-      const categoryDetail = result[categoryName];
+      const categoryDetail = result[categoryName]!;
 
-      if (categoryDetail) {
-        return (
-          <ResultCategory
-            name={categoryName}
-            ingredients={categoryDetail}
-            key={index}
-            onIngClick={this.showModal}
-          />
-        );
-      } else {
-        return null;
-      }
+      return (
+        <ResultCategory
+          name={categoryName}
+          ingredients={categoryDetail}
+          key={index}
+          onIngClick={this.showModal}
+        />
+      );
     });
 
     return (
@@ -164,9 +160,7 @@ class SearchResult extends Component<ISearchResultProps, SearchResultState> {
 
     const { result } = this.props;
     const { category, ingQuery } = this.state.modalData;
-    const toBeShown = result[category]!.find(el => el.ingQuery === ingQuery);
-
-    if (!toBeShown) return null;
+    const toBeShown = result[category]!.find(el => el.ingQuery === ingQuery)!;
 
     const { infos } = toBeShown;
     let ingDetail;
