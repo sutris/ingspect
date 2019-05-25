@@ -29,8 +29,7 @@ export function withSearch<T extends WithSearchProps = WithSearchProps>(
   WrappedComponent: ComponentType<T>
 ) {
   // Create a nice displayName for React Dev Tools.
-  const displayName =
-    WrappedComponent.displayName || WrappedComponent.name || "Component";
+  const displayName = WrappedComponent.displayName || WrappedComponent.name;
 
   return class ComponentWithSearch extends Component<
     Optionalize<T, WithSearchProps>
