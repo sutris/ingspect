@@ -2,6 +2,7 @@ import { EventEmitter } from "events";
 import Tesseract from "tesseract.js";
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Tesseract {
     interface TesseractStatic {
       terminate(): void;

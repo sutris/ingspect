@@ -51,11 +51,14 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
           {this.state.isPWASupported ? (
             <>
               <p>
-                And your browser do support this capability! 🎉 It means that
-                you can make IngSpect’s ingredient search functionality continue
-                to work even if you have no internet connection. In addition,
-                you can make the IngSpect's image text recognition available in
-                offline mode.
+                And your browser do support this capability!{" "}
+                <span role="img" aria-label="celebrate!">
+                  🎉
+                </span>{" "}
+                It means that you can make IngSpect’s ingredient search
+                functionality continue to work even if you have no internet
+                connection. In addition, you can make the IngSpect's image text
+                recognition available in offline mode.
               </p>
               <button
                 disabled={!isThereThingsToBeCached}

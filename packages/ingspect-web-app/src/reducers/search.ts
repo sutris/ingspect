@@ -15,7 +15,7 @@ const searchResult: Reducer<CategorizeResult, AllAction> = (
   switch (action.type) {
     case ACTION_TYPE.DO_SEARCH:
       const ingList = action.query
-        .split(/[,\(\)\[\]]/)
+        .split(/[,()[\]]/)
         .map(ing => ing.trim())
         .filter(str => str.length !== 0);
       const categorizeOption = { minSimilarity: 0.85 };
