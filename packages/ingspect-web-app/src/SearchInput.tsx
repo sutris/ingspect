@@ -23,7 +23,7 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
     super(props);
 
     this.state = {
-      searchText: historyManager.getCurrentSearch()
+      searchText: historyManager.getCurrentSearch() || ""
     };
   }
 
