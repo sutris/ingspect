@@ -20,7 +20,7 @@ interface IAppProps {
     progress: number;
   } | null;
 
-  // withRouter porps
+  // withRouter props
   history: History;
   location: Location;
   match: match;

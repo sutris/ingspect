@@ -1,6 +1,7 @@
+import { History } from "history";
 import React, { Component, ComponentType } from "react";
 
-import historyManager from "./history";
+import { updateHistory } from "./utils/history";
 
 /**
  * Subtract keys from one interface from the other.
@@ -21,18 +22,23 @@ type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
  */
 type Optionalize<T extends K, K> = Omit<T, keyof K>;
 
-export interface WithSearchProps {
+export interface WithSearchInjectedProps {
   search: (text: string) => void;
 }
 
-export function withSearch<T extends WithSearchProps = WithSearchProps>(
+interface WithSearchRequiredWrappedComponentProps
+  extends WithSearchInjectedProps {
+  history: History;
+}
+
+export function withSearch<T extends WithSearchRequiredWrappedComponentProps>(
   WrappedComponent: ComponentType<T>
 ) {
   // Create a nice displayName for React Dev Tools.
   const displayName = WrappedComponent.displayName || WrappedComponent.name;
 
   return class ComponentWithSearch extends Component<
-    Optionalize<T, WithSearchProps>
+    Optionalize<T, WithSearchInjectedProps>
   > {
     public static displayName = `withSearch(${displayName})`;
 
@@ -41,7 +47,7 @@ export function withSearch<T extends WithSearchProps = WithSearchProps>(
     }
 
     private search = (text: string) => {
-      historyManager.updateHistory("/search", {
+      updateHistory(this.props.history, "/search", {
         search: text
       });
     };

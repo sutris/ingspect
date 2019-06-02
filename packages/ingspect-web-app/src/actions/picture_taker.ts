@@ -1,9 +1,10 @@
+import { History } from "history";
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
 import ocrManager, { EVENTS } from "../controlers/ocr";
-import historyManager from "../history";
 import { AppState } from "../reducers/index";
+import { updateHistory } from "../utils/history";
 import { resetProgress, setProgress } from "./loading";
 
 interface IProgressObject {
@@ -12,7 +13,8 @@ interface IProgressObject {
 }
 
 function recognizePicture(
-  file: File
+  file: File,
+  history: History
 ): ThunkAction<void, AppState, undefined, Action> {
   return dispatch => {
     ocrManager.recognize(file);
@@ -25,7 +27,7 @@ function recognizePicture(
     );
 
     ocrManager.addListener(EVENTS.RECOGNIZE_RESULT, (result: string) => {
-      historyManager.updateHistory("/search", {
+      updateHistory(history, "/search", {
         search: result
       });
 

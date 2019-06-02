@@ -1,37 +1,44 @@
+import { History, Location } from "history";
 import { CategorizeResult } from "ingspect-lib";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { match, withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
 import { doSearch } from "./actions";
-import historyManager, { HISTORY_EVENT } from "./history";
 import PictureTaker from "./PictureTaker";
 import { AppState } from "./reducers";
 import SearchInput from "./SearchInput";
 import SearchResult from "./SearchResult";
+import { getCurrentSearch, getSearchUpdateObservable } from "./utils/history";
+import Observable from "./utils/observable";
 
 import styles from "./SearchResultPage.module.css";
 
 interface ISearchResultPageProps {
   result: CategorizeResult;
   doSearch: (...arg: any) => any;
+
+  // withRouter props
+  history: History;
+  location: Location;
+  match: match;
 }
 
 class SearchResultPage extends Component<ISearchResultPageProps> {
-  public componentDidMount() {
-    historyManager.addListener(
-      HISTORY_EVENT.SEARCH_UPDATE,
-      this.onSearchUpdate
-    );
+  private searchUpdateObservable: Observable<string | undefined> | undefined;
 
-    this.onSearchUpdate(historyManager.getCurrentSearch());
+  public componentDidMount() {
+    this.searchUpdateObservable = getSearchUpdateObservable(this.props.history);
+    this.searchUpdateObservable.subscribe(this.onSearchUpdate);
+
+    this.onSearchUpdate(getCurrentSearch());
   }
 
   public componentWillUnmount() {
-    historyManager.removeListener(
-      HISTORY_EVENT.SEARCH_UPDATE,
-      this.onSearchUpdate
-    );
+    if (this.searchUpdateObservable) {
+      this.searchUpdateObservable.unsubscribe();
+    }
   }
 
   public render() {
@@ -68,7 +75,9 @@ const mapStateToProps = (state: AppState) => {
 
 const mapDispatchToProps = { doSearch };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SearchResultPage);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SearchResultPage)
+);

@@ -1,15 +1,23 @@
 import classNames from "classnames";
+import { History, Location } from "history";
 import React, { ChangeEvent, Component } from "react";
+import { match, withRouter } from "react-router";
 
-import historyManager, { HISTORY_EVENT } from "./history";
-import withSearch, { WithSearchProps } from "./WithSearch";
+import { getCurrentSearch, getSearchUpdateObservable } from "./utils/history";
+import Observable from "./utils/observable";
+import withSearch, { WithSearchInjectedProps } from "./WithSearch";
 
 import styles from "./SearchInput.module.css";
 
-interface ISearchInputProps extends WithSearchProps {
+interface ISearchInputProps extends WithSearchInjectedProps {
   className?: string;
   onChange?: (ele: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
+
+  // withRouter props
+  history: History;
+  location: Location;
+  match: match;
 }
 
 interface ISearchInputState {
@@ -18,29 +26,27 @@ interface ISearchInputState {
 
 class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
   private searchInput: HTMLInputElement | null = null;
+  private searchUpdateObservable: Observable<string | undefined> | undefined;
 
   constructor(props: ISearchInputProps) {
     super(props);
 
     this.state = {
-      searchText: historyManager.getCurrentSearch() || ""
+      searchText: getCurrentSearch() || ""
     };
   }
 
   public componentDidMount() {
     this.searchInput && this.searchInput.focus();
 
-    historyManager.addListener(
-      HISTORY_EVENT.SEARCH_UPDATE,
-      this.onSearchUpdate
-    );
+    this.searchUpdateObservable = getSearchUpdateObservable(this.props.history);
+    this.searchUpdateObservable.subscribe(this.onSearchUpdate);
   }
 
   public componentWillUnmount() {
-    historyManager.removeListener(
-      HISTORY_EVENT.SEARCH_UPDATE,
-      this.onSearchUpdate
-    );
+    if (this.searchUpdateObservable) {
+      this.searchUpdateObservable.unsubscribe();
+    }
   }
 
   public handleKeyPress = (event: React.KeyboardEvent) => {
@@ -90,4 +96,4 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
   };
 }
 
-export default withSearch(SearchInput);
+export default withRouter(withSearch(SearchInput));

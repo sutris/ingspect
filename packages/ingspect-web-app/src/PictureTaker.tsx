@@ -1,6 +1,8 @@
 import classnames from "classnames";
+import { History, Location } from "history";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { match, withRouter } from "react-router";
 
 import { recognizePicture } from "./actions";
 
@@ -14,6 +16,11 @@ interface IPictureTakerProps {
   className?: string;
   recognizePicture: (...arg: any) => any;
   showIcon?: boolean;
+
+  // withRouter props
+  history: History;
+  location: Location;
+  match: match;
 }
 
 const CameraIcon = () => {
@@ -83,7 +90,7 @@ class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
 
-        this.props.recognizePicture(file);
+        this.props.recognizePicture(file, this.props.history);
       }
     }
   };
@@ -91,7 +98,9 @@ class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
 
 const mapDispatchToProps = { recognizePicture };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(PictureTaker);
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(PictureTaker)
+);

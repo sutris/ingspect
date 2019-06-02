@@ -1,17 +1,16 @@
-import { createMemoryHistory } from "history";
+import { createBrowserHistory } from "history";
 import React from "react";
 import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
 import { render } from "react-testing-library";
 
-import historyManager from "../history";
 import store from "../store";
 
 function renderWithAppContext(
   app: React.ReactNode,
-  { route: { initialRoute = "/", history = historyManager.history } = {} } = {}
+  { route: { initialRoute = "/", history = createBrowserHistory() } = {} } = {}
 ) {
-  historyManager.updateHistory(initialRoute);
+  history.push(initialRoute);
 
   const renderResult = render(
     <Provider store={store}>

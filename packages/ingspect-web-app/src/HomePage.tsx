@@ -1,14 +1,23 @@
 import classnames from "classnames";
+import { History, Location } from "history";
 import React, { ChangeEvent } from "react";
+import { match, withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
 import PictureTaker from "./PictureTaker";
 import SearchInput from "./SearchInput";
-import withSearch, { WithSearchProps } from "./WithSearch";
+import withSearch, { WithSearchInjectedProps } from "./WithSearch";
 
 import styles from "./HomePage.module.css";
 
-const HomePage = (props: WithSearchProps) => {
+interface HomePageProps extends WithSearchInjectedProps {
+  // withRouter props
+  history: History;
+  location: Location;
+  match: match;
+}
+
+const HomePage = (props: HomePageProps) => {
   const { search } = props;
   let searchInputValue: string;
 
@@ -65,4 +74,4 @@ const HomePage = (props: WithSearchProps) => {
   );
 };
 
-export default withSearch(HomePage);
+export default withRouter(withSearch(HomePage));
