@@ -1,4 +1,4 @@
-# IngSpect
+# IngSpect <a href="https://travis-ci.com/sutris/ingspect"><img alt="Travis Status" src="https://travis-ci.com/sutris/ingspect.svg?token=p8EQStg3mnq2qNy2vcMo&branch=master"></a>
 
 IngSpect is a set of libraries and applications to help categorize ingredients based on their source (vegan, vegetarian, and others).
 
