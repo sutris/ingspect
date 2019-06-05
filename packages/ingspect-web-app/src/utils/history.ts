@@ -32,21 +32,15 @@ function getSearchUpdateObservable(
 function updateHistory(
   history: History,
   path: string,
-  search?: ISearchParamsDict
+  search: ISearchParamsDict
 ): void {
-  let newPath;
+  const searchParams = new URLSearchParams(window.location.search);
 
-  if (search) {
-    const searchParams = new URLSearchParams(window.location.search);
-
-    for (const key of Object.keys(search)) {
-      searchParams.set(key, search[key]);
-    }
-
-    newPath = `${path}?${searchParams.toString()}`;
-  } else {
-    newPath = path;
+  for (const key of Object.keys(search)) {
+    searchParams.set(key, search[key]);
   }
+
+  const newPath = `${path}?${searchParams.toString()}`;
 
   history.push(newPath);
 }

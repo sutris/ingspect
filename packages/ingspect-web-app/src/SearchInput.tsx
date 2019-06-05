@@ -44,9 +44,7 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
   }
 
   public componentWillUnmount() {
-    if (this.searchUpdateObservable) {
-      this.searchUpdateObservable.unsubscribe();
-    }
+    this.searchUpdateObservable && this.searchUpdateObservable.unsubscribe();
   }
 
   public handleKeyPress = (event: React.KeyboardEvent) => {

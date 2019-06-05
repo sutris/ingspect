@@ -19,9 +19,7 @@ class Observable<Val> {
   }
 
   public unsubscribe() {
-    if (this.unsub) {
-      this.unsub();
-    }
+    this.unsub && this.unsub();
   }
 }
 

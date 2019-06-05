@@ -36,9 +36,7 @@ class SearchResultPage extends Component<ISearchResultPageProps> {
   }
 
   public componentWillUnmount() {
-    if (this.searchUpdateObservable) {
-      this.searchUpdateObservable.unsubscribe();
-    }
+    this.searchUpdateObservable && this.searchUpdateObservable.unsubscribe();
   }
 
   public render() {
