@@ -7,8 +7,9 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "../../node_modules/.bin/tsc",
-    "test": "../../node_modules/.bin/jest --config=../../jest.config.js --coverage packages/ingspect-dict/",
-    "test:coverage": "CI=1 npm run test -- --coverage --colors packages/ingspect-dict/"
+    "test": "npm run test:base -- --config='../../jest.config.js'",
+    "test:base": "../../node_modules/.bin/jest packages/ingspect-dict/",
+    "test:ci": "CI=1 npm run test:base -- --config='../../jest-coverage.config.js' --colors"
   },
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",

@@ -7,8 +7,9 @@
     "deploy": "npm run build && netlify deploy --dir=build --prod",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
-    "test": "react-scripts test",
-    "test:coverage": "CI=1 npm run test -- --coverage --colors --watchAll=false"
+    "test": "react-scripts test --watchAll=false",
+    "test:ci": "CI=1 npm run test -- --coverage --colors --watchAll=false",
+    "test:watch": "react-scripts test"
   },
   "dependencies": {
     "classnames": "^2.2.6",
@@ -54,6 +55,10 @@
         "lines": 100,
         "statements": 100
       }
-    }
+    },
+    "coverageReporters": [
+      "json",
+      "text"
+    ]
   }
 }

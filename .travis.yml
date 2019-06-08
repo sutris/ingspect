@@ -1,3 +1,12 @@
 language: node_js
 before_script:
   - npm run bootstrap
+env:
+  - CODECOV_TOKEN="7d19fbc0-67a1-450a-996c-5f16fbb44be4"
+install:
+  - npm install
+  - npm install -g codecov
+script:
+  - npm run test:ci
+after_success:
+  - codecov

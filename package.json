@@ -6,11 +6,14 @@
     "precommit": "lint-staged",
     "lint": "tslint -c tslint.json \"**/*.{tsx,ts}\"",
     "prepush": "npm test",
-    "test": "ls packages | xargs -I % sh -c 'cd ./packages/%; npm run test:coverage'"
+    "test": "ls packages | xargs -I % sh -c 'cd ./packages/%; npm run test'",
+    "test:ci": "ls packages | xargs -I % sh -c 'cd ./packages/%; npm run test:ci' && node script/mapCoverage.js"
   },
   "devDependencies": {
     "@types/jest": "^24.0.12",
     "husky": "^1.2.1",
+    "istanbul-api": "^2.1.6",
+    "istanbul-lib-coverage": "^2.0.5",
     "jest": "24.7.1",
     "lerna": "^3.13.0",
     "lint-staged": "^8.1.0",
