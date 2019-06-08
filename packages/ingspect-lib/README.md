@@ -14,3 +14,19 @@ import ingDict from "ingspect-dict";
 
 categorize([sugar, carrot, salt], ingDict, { minSimilarity: 0.8 });
 ```
+
+## Available Scripts
+
+In the package directory, you can run:
+
+### `npm test`
+
+Run the test.
+
+### `npm run test:ci`
+
+Run the test in CI mode with coverage generation.
+
+### `npm run build`
+
+Build the package.

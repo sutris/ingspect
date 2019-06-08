@@ -12,3 +12,19 @@ cd ingspect
 npm install
 npm run bootstrap
 ```
+
+## Available Scripts
+
+In the package directory, you can run:
+
+### `npm run bootstrap`
+
+Bootstrap the project by installing all the packages' dependencies.
+
+### `npm test`
+
+Run all packages test.
+
+### `npm run test:ci`
+
+Run all packages test in CI mode with coverage generation and then merge/map all packages code coverage into a single code coverage.

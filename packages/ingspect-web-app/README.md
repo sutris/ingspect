@@ -17,7 +17,7 @@ npm start
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the package directory, you can run:
 
 ### `npm start`
 
@@ -25,8 +25,16 @@ Runs the app in the development mode. Open [http://localhost:3000](http://localh
 
 ### `npm test`
 
+Run the test.
+
+### `npm run test:watch`
+
 Runs the test watcher in an interactive mode.
 By default, runs tests related to files changed since the last commit.
+
+### `npm run test:ci`
+
+Run the test in CI mode with coverage generation.
 
 ### `npm run build`
 
