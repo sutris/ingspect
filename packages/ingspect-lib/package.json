@@ -1,9 +1,9 @@
 {
   "name": "ingspect-lib",
-  "description": "Utility library that help IngSpect categorize ingredients by their source.",
-  "license": "ISC",
-  "author": "",
-  "version": "0.0.1",
+  "description": "Utility library to help categorizing ingredients by their source.",
+  "license": "MIT",
+  "author": "Sutrisno Suryajaya Dwi Putra <sutris.sdp@protonmail.com>",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
     "build": "../../node_modules/.bin/tsc",
@@ -12,17 +12,10 @@
     "test:ci": "CI=1 npm run test:base -- --config='../../jest-coverage.config.js' --colors"
   },
   "dependencies": {
-    "ingspect-dict": "^0",
+    "ingspect-dict": "1.0.0",
     "string-similarity": "^2.0.0"
   },
   "devDependencies": {
     "@types/string-similarity": "^3.0.0"
-  },
-  "keywords": [
-    "environment",
-    "ingredient",
-    "sustainability",
-    "vegan",
-    "vegetarian"
-  ]
+  }
 }

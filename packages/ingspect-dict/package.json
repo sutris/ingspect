@@ -1,9 +1,9 @@
 {
   "name": "ingspect-dict",
-  "description": "Ingredients data/dictionary that empowers IngSpect to categorize ingredients by their source.",
-  "license": "ISC",
-  "author": "",
-  "version": "0.0.1",
+  "description": "Ingredients data/dictionary that contains their information and their sources.",
+  "license": "MIT",
+  "author": "Sutrisno Suryajaya Dwi Putra <sutris.sdp@protonmail.com>",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
     "build": "../../node_modules/.bin/tsc",
@@ -14,12 +14,5 @@
   "devDependencies": {
     "cheerio": "^1.0.0-rc.2",
     "request": "^2.88.0"
-  },
-  "keywords": [
-    "environment",
-    "ingredient",
-    "sustainability",
-    "vegan",
-    "vegetarian"
-  ]
+  }
 }

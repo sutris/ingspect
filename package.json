@@ -1,6 +1,7 @@
 {
   "private": true,
   "name": "ingspect",
+  "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "precommit": "lint-staged",
