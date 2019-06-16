@@ -9,7 +9,6 @@ IngSpect is a managed as a monorepo with the help of [Lerna](https://lernajs.io/
 ```
 git clone git@github.com:sutris/ingspect.git
 cd ingspect
-npm install
 npm run bootstrap
 ```
 

@@ -9,7 +9,6 @@ You can run a local instance of IngSpect by executing the following command in a
 ```
 git clone git@github.com:sutris/ingspect.git
 cd ingspect
-npm install
 npm run bootstrap
 cd packages/ingspect-web-app
 npm start

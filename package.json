@@ -3,7 +3,7 @@
   "name": "ingspect",
   "license": "MIT",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "npm install && lerna bootstrap",
     "precommit": "lint-staged",
     "lint": "tslint -c tslint.json \"**/*.{tsx,ts}\"",
     "prepush": "npm test",
