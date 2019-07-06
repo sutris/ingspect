@@ -1,0 +1,7 @@
+.iconButton {
+  width: 38px;
+  height: 38px;
+  padding: 7px;
+  line-height: 36px; /* intentionally not the same as width and height since it is more visually centered */
+  color: white; /* for icon fill color */
+}

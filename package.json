@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "bootstrap": "npm install && lerna bootstrap",
-    "precommit": "lint-staged",
+    "precommit": "lint-staged && lerna run --concurrency 1 --stream precommit",
     "lint": "tslint -c tslint.json \"**/*.{tsx,ts}\"",
     "prepush": "npm test",
     "test": "ls packages | xargs -I % sh -c 'cd ./packages/%; npm run test'",
@@ -20,9 +20,6 @@
     "lint-staged": "^8.1.0",
     "prettier": "^1.15.3",
     "prettier-package-json": "^2.1.0",
-    "stylelint": "^9.9.0",
-    "stylelint-config-standard": "^18.2.0",
-    "stylelint-no-unsupported-browser-features": "^3.0.2",
     "ts-jest": "^24.0.2",
     "tslint": "^5.12.0",
     "tslint-config-prettier": "^1.17.0",
@@ -34,11 +31,6 @@
     "node": "^10.13.0"
   },
   "lint-staged": {
-    "**/*.{scss,css}": [
-      "prettier --write",
-      "stylelint --config=.stylelintrc --fix",
-      "git add"
-    ],
     "**/*.{tsx,ts}": [
       "prettier --write",
       "tslint",

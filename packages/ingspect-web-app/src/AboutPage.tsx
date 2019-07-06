@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import styles from "./AboutPage.module.css";
+import Button from "./components/Button";
 import sharedStyles from "./shared.module.css";
 
 function AboutPage() {
@@ -94,7 +95,7 @@ function AboutPage() {
         </p>
       </div>
       <Link to="/" className={sharedStyles["backButton--bottom"]}>
-        Back to Home
+        <Button full={true}>Back to Home</Button>
       </Link>
     </>
   );

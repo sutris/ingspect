@@ -9,18 +9,19 @@
 }
 
 .button {
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  padding: 5px;
+  width: 100%;
 }
 
-.button svg {
+.label {
+  cursor: pointer;
+}
+
+.label svg {
   fill: currentColor;
 }
 
-.inputEle--isFocus + .button,
-.inputEle:focus + .button {
+.inputEle--isFocus + .label,
+.inputEle:focus + .label {
   outline: 1px dotted #000;
   outline: -webkit-focus-ring-color auto 5px;
 }

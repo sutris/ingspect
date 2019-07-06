@@ -72,12 +72,7 @@
 }
 
 .button {
-  composes: button from "./shared.module.css";
-  line-height: 45px;
-  height: 45px;
-  font-weight: bold;
-  padding: 0;
-  flex: 1 0 0;
+  flex: 1 1 40px; /* 40px === 2 * 20px horizontal padding */
 }
 
 .button:first-child {

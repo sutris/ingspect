@@ -1,0 +1,46 @@
+@value vars: "../vars.module.css";
+@value c-teal, c-dark-teal, c-gray from vars;
+
+.buttonBase {
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  background: c-teal;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonBase:hover {
+  background: c-dark-teal;
+}
+
+.button {
+  composes: buttonBase;
+  text-transform: uppercase;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  line-height: 45px;
+  height: 45px;
+  font-weight: bold;
+  padding: 0 20px;
+}
+
+.button--full {
+  composes: buttonBase;
+  width: 100%;
+  line-height: 80px;
+  height: 80px;
+  display: inline-block;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.button:disabled {
+  background: c-gray;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+  cursor: not-allowed;
+}
+
+.button:disabled:hover {
+  background: c-gray;
+}

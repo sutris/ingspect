@@ -1,26 +1,7 @@
-@value vars: "./vars.module.css";
-@value c-gray from vars;
-
 .container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-.downloadButton {
-  padding: 10px 20px;
-  font-weight: bold;
-  margin-top: 10px;
-}
-
-.downloadButton:disabled {
-  background: c-gray;
-  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
-  cursor: not-allowed;
-}
-
-.downloadButton:disabled:hover {
-  background: c-gray;
 }
 
 .backButton--bottom {

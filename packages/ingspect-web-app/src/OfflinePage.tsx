@@ -1,7 +1,7 @@
-import classnames from "classnames";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
+import Button from "./components/Button";
 import styles from "./OfflinePage.module.css";
 import sharedStyles from "./shared.module.css";
 
@@ -60,13 +60,9 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
                 connection. In addition, you can make the IngSpect's image text
                 recognition available in offline mode.
               </p>
-              <button
+              <Button
                 disabled={!isThereThingsToBeCached}
                 onClick={this.fetchUncachedUrls}
-                className={classnames(
-                  sharedStyles.button,
-                  styles.downloadButton
-                )}
               >
                 {isThereThingsToBeCached
                   ? "Download for offline"
@@ -83,7 +79,7 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
                     <div aria-hidden="true" />
                   </div>
                 ) : null}
-              </button>
+              </Button>
             </>
           ) : (
             <p>
@@ -94,7 +90,7 @@ class OfflinePage extends Component<{}, IOfflinePageState> {
           )}
         </div>
         <Link to="/" className={styles["backButton--bottom"]}>
-          Back to Home
+          <Button full={true}>Back to Home</Button>
         </Link>
       </div>
     );

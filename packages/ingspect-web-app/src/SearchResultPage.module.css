@@ -23,14 +23,8 @@
 @value item-padding: 18px;
 
 .pictureTaker {
-  composes: button from "./shared.module.css";
   margin-left: item-padding;
-  color: white; /* for icon fill color */
   flex-shrink: 0;
-  box-sizing: border-box;
-  padding: 7px;
-  width: 38px;
-  height: 38px;
 }
 
 .backButton {

@@ -17,34 +17,6 @@
   color: c-dark-teal;
 }
 
-.buttonBase {
-  color: white;
-  font-size: 16px;
-  text-align: center;
-  background: c-teal;
-  border: none;
-  cursor: pointer;
-}
-
-.buttonBase:hover {
-  background: c-dark-teal;
-}
-
-.button {
-  composes: buttonBase;
-  text-transform: uppercase;
-  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-}
-
-.button--full {
-  composes: buttonBase;
-  width: 100%;
-  line-height: 80px;
-  display: inline-block;
-  font-weight: bold;
-}
-
 .page {
   padding: page-padding;
   line-height: 1.5;
@@ -71,10 +43,6 @@
   /* stylelint-disable-next-line function-calc-no-unspaced-operator */
   top: calc(page-padding + 5px);
   right: page-padding;
-}
-
-.backButton--bottom {
-  composes: button--full;
 }
 
 @media (min-width: 750px) {

@@ -7,6 +7,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "react-scripts build && workbox generateSW workbox-config.js",
+    "precommit": "lint-staged",
     "deploy": "npm run build && netlify deploy --dir=build --prod",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
@@ -41,6 +42,9 @@
     "@types/tesseract.js": "0.0.2",
     "jest-dom": "^3.2.2",
     "react-testing-library": "^7.0.0",
+    "stylelint": "^9.9.0",
+    "stylelint-config-standard": "^18.2.0",
+    "stylelint-no-unsupported-browser-features": "^3.0.2",
     "workbox-cli": "^4.2.0"
   },
   "eslintConfig": {
@@ -62,6 +66,13 @@
     "coverageReporters": [
       "json",
       "text"
+    ]
+  },
+  "lint-staged": {
+    "**/*.{scss,css}": [
+      "prettier --write",
+      "stylelint --config=.stylelintrc --fix",
+      "git add"
     ]
   }
 }

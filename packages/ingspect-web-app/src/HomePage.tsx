@@ -4,6 +4,7 @@ import React, { ChangeEvent } from "react";
 import { match, withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
+import Button from "./components/Button";
 import PictureTaker from "./PictureTaker";
 import SearchInput from "./SearchInput";
 import withSearch, { WithSearchInjectedProps } from "./WithSearch";
@@ -60,13 +61,13 @@ const HomePage = (props: HomePageProps) => {
           onChange={handleSearchInputChange}
         />
         <div className={styles.buttons_container}>
-          <button
+          <Button
             className={styles.button}
             onClick={handleIngspectClick}
             data-testid="ingspect-button"
           >
             IngSpect
-          </button>
+          </Button>
           <PictureTaker className={styles.button}>Photo</PictureTaker>
         </div>
       </div>

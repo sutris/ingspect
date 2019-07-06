@@ -1,10 +1,12 @@
 import classnames from "classnames";
 import { History, Location } from "history";
-import React, { Component } from "react";
+import React, { Component, createRef, RefObject } from "react";
 import { connect } from "react-redux";
 import { match, withRouter } from "react-router";
 
 import { recognizePicture } from "./actions";
+import Button from "./components/Button";
+import IconButton from "./components/IconButton";
 
 import styles from "./PictureTaker.module.css";
 
@@ -35,12 +37,17 @@ const CameraIcon = () => {
 };
 
 class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
+  private label: RefObject<HTMLLabelElement>;
+
   constructor(props: IPictureTakerProps) {
     super(props);
 
     this.state = {
       isFocus: false
     };
+
+    this.label = createRef();
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   public render() {
@@ -63,14 +70,33 @@ class PictureTaker extends Component<IPictureTakerProps, IPictureTakerState> {
         />
         <label
           htmlFor="pictureTaker"
-          className={classnames(styles.button, this.props.className)}
           data-testid="picture-taker"
+          className={classnames(styles.label, this.props.className)}
+          ref={this.label}
         >
-          {showIcon ? <CameraIcon /> : null}
-          {children}
+          {showIcon ? (
+            // tabIndex is set to -1 to make the button unfocusable
+            <IconButton tabIndex={-1} onClick={this.handleButtonClick}>
+              <CameraIcon />
+            </IconButton>
+          ) : (
+            // tabIndex is set to -1 to make the button unfocusable
+            <Button
+              className={styles.button}
+              tabIndex={-1}
+              onClick={this.handleButtonClick}
+              data-testid="picture-taker-button"
+            >
+              {children}
+            </Button>
+          )}
         </label>
       </>
     );
+  }
+
+  private handleButtonClick() {
+    this.label.current && this.label.current.click();
   }
 
   // Needed because of Firefox bug (https://tympanus.net/codrops/2015/09/15/styling-customizing-file-inputs-smart-way/#firefox-bug)

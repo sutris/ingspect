@@ -66,4 +66,14 @@ describe("Picture Taker component", () => {
 
     expect(inputElem).not.toHaveClass("inputEle--isFocus");
   });
+
+  it("should focus on the label when the button is clicked", () => {
+    const { getByTestId } = renderWithAppContext(<PictureTaker />);
+    const buttonElem = getByTestId("picture-taker-button");
+    const labelElem = getByTestId("picture-taker");
+
+    fireEvent.click(buttonElem);
+
+    expect(labelElem).toBeInTheDOM();
+  });
 });
