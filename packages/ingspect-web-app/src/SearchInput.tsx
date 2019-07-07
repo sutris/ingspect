@@ -3,11 +3,10 @@ import { History, Location } from "history";
 import React, { ChangeEvent, Component } from "react";
 import { match, withRouter } from "react-router";
 
+import TextInput from "./components/TextInput";
 import { getCurrentSearch, getSearchUpdateObservable } from "./utils/history";
 import Observable from "./utils/observable";
 import withSearch, { WithSearchInjectedProps } from "./WithSearch";
-
-import styles from "./SearchInput.module.css";
 
 interface ISearchInputProps extends WithSearchInjectedProps {
   className?: string;
@@ -70,12 +69,11 @@ class SearchInput extends Component<ISearchInputProps, ISearchInputState> {
     const { className, placeholder } = this.props;
 
     return (
-      <input
+      <TextInput
         ref={el => {
           this.searchInput = el;
         }}
-        className={classNames(styles.searchInput, className)}
-        type="text"
+        className={classNames(className)}
         placeholder={placeholder ? placeholder : "carrot, sugar, salt, ..."}
         onKeyPress={this.handleKeyPress}
         onChange={this.handleInputChange}

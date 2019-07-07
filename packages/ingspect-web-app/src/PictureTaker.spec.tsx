@@ -74,6 +74,6 @@ describe("Picture Taker component", () => {
 
     fireEvent.click(buttonElem);
 
-    expect(labelElem).toBeInTheDOM();
+    expect(labelElem).toBeInTheDocument();
   });
 });
