@@ -11,15 +11,8 @@
   margin: 0;
 }
 
-@value category-group-horizontal-padding: 30px;
-@value category-group-vertical-padding: 25px;
-
 .categoryGroup {
   margin-top: 20px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  overflow: hidden;
-  padding: category-group-vertical-padding category-group-horizontal-padding;
 }
 
 .categoryGroup:not(:last-child) {

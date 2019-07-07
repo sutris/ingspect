@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { CategorizeResult, IngredientResult } from "ingspect-lib";
 import React, { Component } from "react";
 
+import Card from "./components/Card";
 import { INGREDIENT_CATEGORY } from "./constant";
 import Modal from "./Modal";
 
@@ -60,10 +61,10 @@ const ResultCategory = (props: IResultCategoryProps) => {
   ));
 
   return (
-    <div className={styles.categoryGroup}>
+    <Card className={styles.categoryGroup}>
       <h2 className={styles["categoryGroup__name"]}>{props.name}</h2>
       <ul className={styles["categoryGroup__ingList"]}>{ingredients}</ul>
-    </div>
+    </Card>
   );
 };
 
