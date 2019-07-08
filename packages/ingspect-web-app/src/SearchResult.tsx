@@ -3,6 +3,7 @@ import { CategorizeResult, IngredientResult } from "ingspect-lib";
 import React, { Component } from "react";
 
 import Card from "./components/Card";
+import Label from "./components/Label";
 import { INGREDIENT_CATEGORY } from "./constant";
 import Modal from "./Modal";
 
@@ -36,9 +37,7 @@ const ResultIngredient = (props: ExtendedIngResult) => {
 
   return (
     <div className={styles.ingredient}>
-      <h3 className={styles["ingredientPill"]} onClick={handleClick}>
-        {getIngName(props)}
-      </h3>
+      <Label onClick={handleClick}>{getIngName(props)}</Label>
     </div>
   );
 };
@@ -173,7 +172,7 @@ class SearchResult extends Component<ISearchResultProps, SearchResultState> {
         return (
           <li key={iii}>
             <h4 className={styles["ingredient__synonym"]}>
-              {name} ({synonymCategory})
+              {name} <Label>{synonymCategory}</Label>
             </h4>
             <p className={styles["ingredient__synonymDetail"]}>{definition}</p>
           </li>
@@ -220,7 +219,7 @@ class SearchResult extends Component<ISearchResultProps, SearchResultState> {
       <Modal onDismissed={onDismissed}>
         <div className={styles.ingredient}>
           <h3 className={styles["ingredient__name"]}>
-            {getIngName(toBeShown)} <span>{category}</span>
+            {getIngName(toBeShown)} <Label>{category}</Label>
           </h3>
           {ingDetail}
         </div>

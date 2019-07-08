@@ -1,0 +1,16 @@
+@value vars: "../vars.module.css";
+@value c-dark-gray from vars;
+
+.label {
+  margin: 0;
+  border-radius: 30px;
+  padding: 5px 15px;
+  background: c-dark-gray;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+}
+
+.label[role="button"] {
+  cursor: pointer;
+}

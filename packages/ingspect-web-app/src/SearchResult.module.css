@@ -47,26 +47,7 @@
   margin-right: 5px;
 }
 
-.ingredientPill {
-  background: c-dark-gray;
-  margin: 0;
-  font-size: 14px;
-  color: white;
-  border-radius: 30px;
-  display: inline;
-  padding: 5px 15px;
-  cursor: pointer;
-}
-
 /* MODAL */
-
-.ingredient__name span {
-  background: c-dark-gray;
-  color: white;
-  border-radius: 10px;
-  font-size: 12px;
-  padding: 3px 10px;
-}
 
 .ingredient__detail,
 .ingredient__preDetail {
