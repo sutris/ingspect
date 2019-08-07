@@ -1,4 +1,4 @@
-@value vars: "./vars.module.css";
+@value vars: "../vars.module.css";
 @value page-padding, c-gray, c-darker-gray, s-small, s-medium from vars;
 
 .app {
@@ -8,7 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: url(./assets/homeBackground.svg);
+  background: url(../assets/homeBackground.svg);
   background-size: 100% 50%;
   background-repeat: no-repeat;
 }
@@ -16,7 +16,7 @@
 .nav__item {
   position: absolute;
   top: page-padding;
-  composes: link from "./shared.module.css";
+  composes: link from "../shared.module.css";
 }
 
 .nav__offline {

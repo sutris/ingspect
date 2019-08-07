@@ -4,9 +4,9 @@ import React, { Component, createRef, RefObject } from "react";
 import { connect } from "react-redux";
 import { match, withRouter } from "react-router";
 
-import { recognizePicture } from "./actions";
-import Button from "./components/Button";
-import IconButton from "./components/IconButton";
+import { recognizePicture } from "../actions";
+import Button from "../components/Button";
+import IconButton from "../components/IconButton";
 
 import styles from "./PictureTaker.module.css";
 

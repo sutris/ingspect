@@ -1,8 +1,8 @@
 import React from "react";
 import { fireEvent, getByText } from "react-testing-library";
 
+import { renderWithAppContext } from "../test/utils";
 import SearchResultPage from "./SearchResultPage";
-import { renderWithAppContext } from "./test/utils";
 
 describe("Search Result page", () => {
   it("should render search input field", () => {

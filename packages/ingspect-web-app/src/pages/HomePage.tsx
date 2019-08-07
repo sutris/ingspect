@@ -4,10 +4,10 @@ import React, { ChangeEvent } from "react";
 import { match, withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
-import Button from "./components/Button";
-import PictureTaker from "./PictureTaker";
-import SearchInput from "./SearchInput";
-import withSearch, { WithSearchInjectedProps } from "./WithSearch";
+import Button from "../components/Button";
+import PictureTaker from "../containers/PictureTaker";
+import SearchInput from "../containers/SearchInput";
+import withSearch, { WithSearchInjectedProps } from "../WithSearch";
 
 import styles from "./HomePage.module.css";
 

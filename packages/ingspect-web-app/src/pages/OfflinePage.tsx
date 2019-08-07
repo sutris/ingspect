@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import Button from "./components/Button";
+import Button from "../components/Button";
+import sharedStyles from "../shared.module.css";
 import styles from "./OfflinePage.module.css";
-import sharedStyles from "./shared.module.css";
 
 interface IOfflinePageState {
   isPWASupported: boolean;

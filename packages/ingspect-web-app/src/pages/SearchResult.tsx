@@ -2,10 +2,10 @@ import classNames from "classnames";
 import { CategorizeResult, IngredientResult } from "ingspect-lib";
 import React, { Component } from "react";
 
-import Card from "./components/Card";
-import Label from "./components/Label";
-import { INGREDIENT_CATEGORY } from "./constant";
-import Modal from "./Modal";
+import Card from "../components/Card";
+import Label from "../components/Label";
+import { INGREDIENT_CATEGORY } from "../constant";
+import Modal from "../containers/Modal";
 
 import styles from "./SearchResult.module.css";
 

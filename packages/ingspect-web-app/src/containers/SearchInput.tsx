@@ -3,10 +3,10 @@ import { History, Location } from "history";
 import React, { ChangeEvent, Component } from "react";
 import { match, withRouter } from "react-router";
 
-import TextInput from "./components/TextInput";
-import { getCurrentSearch, getSearchUpdateObservable } from "./utils/history";
-import Observable from "./utils/observable";
-import withSearch, { WithSearchInjectedProps } from "./WithSearch";
+import TextInput from "../components/TextInput";
+import { getCurrentSearch, getSearchUpdateObservable } from "../utils/history";
+import Observable from "../utils/observable";
+import withSearch, { WithSearchInjectedProps } from "../WithSearch";
 
 interface ISearchInputProps extends WithSearchInjectedProps {
   className?: string;

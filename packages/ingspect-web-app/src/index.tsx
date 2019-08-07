@@ -4,8 +4,8 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Router } from "react-router-dom";
 
-import App from "./App";
 import "./index.css";
+import App from "./pages/App";
 import store from "./store";
 
 import * as serviceWorker from "./serviceWorker";

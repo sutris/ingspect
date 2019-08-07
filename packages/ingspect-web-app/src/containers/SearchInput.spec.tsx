@@ -1,8 +1,8 @@
 import React from "react";
 import { fireEvent } from "react-testing-library";
 
+import { renderWithAppContext } from "../test/utils";
 import SearchInput from "./SearchInput";
-import { renderWithAppContext } from "./test/utils";
 
 describe("Search Input component", () => {
   it("should not do anything if input is empty and enter key is pressed", () => {

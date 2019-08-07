@@ -5,7 +5,7 @@
 }
 
 .backButton--bottom {
-  composes: backButton--bottom from "./shared.module.css";
+  composes: backButton--bottom from "../shared.module.css";
   margin-top: auto;
 }
 

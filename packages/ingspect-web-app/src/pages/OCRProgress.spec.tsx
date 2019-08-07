@@ -2,8 +2,8 @@ import React from "react";
 import { fireEvent } from "react-testing-library";
 import Tesseract from "tesseract.js";
 
+import { renderWithAppContext } from "../test/utils";
 import App from "./App";
-import { renderWithAppContext } from "./test/utils";
 
 describe("OCR Progress page", () => {
   it("should cancel current OCR job", () => {

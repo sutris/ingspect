@@ -1,9 +1,9 @@
 import React from "react";
 import { fireEvent } from "react-testing-library";
 
-import App from "./App";
+import App from "../pages/App";
+import { renderWithAppContext } from "../test/utils";
 import PictureTaker from "./PictureTaker";
-import { renderWithAppContext } from "./test/utils";
 
 describe("Picture Taker component", () => {
   it("should not do anything when input is changed with an empty file event", () => {

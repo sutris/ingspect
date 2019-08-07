@@ -1,7 +1,7 @@
 import React from "react";
 
+import { renderWithAppContext } from "../test/utils";
 import App from "./App";
-import { renderWithAppContext } from "./test/utils";
 
 describe(App, () => {
   it("should display home page by default", () => {

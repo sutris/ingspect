@@ -1,8 +1,8 @@
 import React from "react";
 import { fireEvent } from "react-testing-library";
 
+import { renderWithAppContext } from "../test/utils";
 import App from "./App";
-import { renderWithAppContext } from "./test/utils";
 
 async function runPendingPromiseJob(times = 1) {
   for (let i = 0; i < times; i++) {

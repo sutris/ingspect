@@ -1,8 +1,8 @@
-@value vars: "./vars.module.css";
+@value vars: "../vars.module.css";
 @value c-dark-gray from vars;
 
 .searchResult {
-  composes: row from "./shared.module.css";
+  composes: row from "../shared.module.css";
 }
 
 .stats {

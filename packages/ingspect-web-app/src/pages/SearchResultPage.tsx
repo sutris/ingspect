@@ -5,13 +5,13 @@ import { connect } from "react-redux";
 import { match, withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
-import { doSearch } from "./actions";
-import PictureTaker from "./PictureTaker";
-import { AppState } from "./reducers";
-import SearchInput from "./SearchInput";
+import { doSearch } from "../actions";
+import PictureTaker from "../containers/PictureTaker";
+import SearchInput from "../containers/SearchInput";
+import { AppState } from "../reducers";
+import { getCurrentSearch, getSearchUpdateObservable } from "../utils/history";
+import Observable from "../utils/observable";
 import SearchResult from "./SearchResult";
-import { getCurrentSearch, getSearchUpdateObservable } from "./utils/history";
-import Observable from "./utils/observable";
 
 import styles from "./SearchResultPage.module.css";
 

@@ -6,11 +6,11 @@ import { Route } from "react-router-dom";
 
 import "normalize.css";
 
+import OfflinePage from "../pages/OfflinePage";
+import { AppState } from "../reducers";
 import AboutPage from "./AboutPage";
 import HomePage from "./HomePage";
 import OCRProgress from "./OCRProgress";
-import OfflinePage from "./OfflinePage";
-import { AppState } from "./reducers";
 
 import SearchResultPage from "./SearchResultPage";
 

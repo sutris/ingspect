@@ -2,8 +2,8 @@ import classnames from "classnames";
 import React from "react";
 import { connect } from "react-redux";
 
-import { resetProgress } from "./actions/loading";
-import ocrManager from "./controlers/ocr";
+import { resetProgress } from "../actions/loading";
+import ocrManager from "../controlers/ocr";
 import styles from "./OCRProgress.module.css";
 
 interface IOCRProgressProps {

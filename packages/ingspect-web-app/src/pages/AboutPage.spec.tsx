@@ -1,8 +1,8 @@
 import React from "react";
 import { fireEvent } from "react-testing-library";
 
+import { renderWithAppContext } from "../test/utils";
 import App from "./App";
-import { renderWithAppContext } from "./test/utils";
 
 describe("About Page", () => {
   function renderAboutPage() {
