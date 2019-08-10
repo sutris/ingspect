@@ -6,6 +6,7 @@
     "bootstrap": "npm install && lerna bootstrap",
     "precommit": "lint-staged && lerna run --concurrency 1 --stream precommit",
     "lint": "tslint -c tslint.json \"**/*.{tsx,ts}\"",
+    "publish": "lerna publish",
     "prepush": "npm test",
     "test": "ls packages | xargs -I % sh -c 'cd ./packages/%; npm run test'",
     "test:ci": "ls packages | xargs -I % sh -c 'cd ./packages/%; npm run test:ci' && node script/mapCoverage.js"
