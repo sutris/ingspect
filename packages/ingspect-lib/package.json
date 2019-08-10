@@ -12,7 +12,7 @@
     "test:ci": "CI=1 npm run test:base -- --config='../../jest-coverage.config.js' --colors"
   },
   "dependencies": {
-    "ingspect-dict": "1.0.0",
+    "ingspect-dict": "^1.0.0",
     "string-similarity": "^2.0.0"
   },
   "devDependencies": {
